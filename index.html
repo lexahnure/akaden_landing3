@@ -31,22 +31,23 @@
 
 <main id="main-content">
   <section class="hero" id="top">
-    <div class="wrap">
-      <div class="hero-logo-wrap">
-        <img src="assets/akaden-logo-white.svg" alt="AKADEN" class="hero-logo" width="252" height="43">
-      </div>
-      <!-- <p class="hero-eyebrow">AI-native integration engineering for higher education</p>  -->
-      <h1>Build and modernize Banner and Colleague integrations with AI agents — not from scratch.</h1>
-      
-      <div class="hero-cta-row">
-        <a href="https://calendly.com/akaden-demo/intro" target="_blank" rel="noopener noreferrer" class="btn-invert">Book a Demo</a>
-        <a href="#story" class="hero-link">Read the story ↓</a>
+      <div class="wrap">
+        <div class="hero-logo-wrap">
+          <img src="assets/akaden-logo-white.svg" alt="AKADEN" class="hero-logo" width="252" height="43">
+        </div>
+        <!-- <p class="hero-eyebrow">AI-native integration engineering for higher education</p>  -->
+        <h1>Build and modernize Banner and Colleague integrations with AI agents — not from scratch.</h1>
+        
+        <div class="hero-cta-row">
+          <a href="https://calendly.com/akaden-demo/intro" target="_blank" rel="noopener noreferrer" class="btn-invert">Book a Demo</a>
+          <a href="#story" class="hero-link">Read the story ↓</a>
+        </div>
       </div>
     </div>
     <div class="hero-postcta">
       <div class="postcta-inner">
         <p class="hero-sub">Akaden is an AI-native engineering platform for higher-ed teams building, modernizing, and maintaining integrations across <strong>Banner, Colleague, Ethos APIs, and Ellucian Data Connect</strong> — from understanding legacy integrations and designing the target solution to implementation, testing, deployment, and maintenance.</p>
-        <p class="hero-note"><strong>Built for the higher-ed integration stack:</strong> Banner · Colleague · Ethos APIs · Ellucian Data Connect · SIS · LMS · data warehouse · institutional systems.</p>
+        <!-- <p class="hero-note"><strong>Built for the higher-ed integration stack:</strong> Banner · Colleague · Ethos APIs · Ellucian Data Connect · SIS · LMS · data warehouse · institutional systems.</p> -->
       </div>
     </div>
   </section>
@@ -54,26 +55,28 @@
   <section id="story">
     <div class="wrap">
     
-    <div class="narrow">
-      <span class="section-eyebrow">The old way</span>
-      <h2>Higher-ed integration engineering still works the way it always has.</h2>
-      <p>Every Banner or Colleague integration becomes its own engineering project — whether it connects the SIS to an LMS, data warehouse, finance system, identity platform, CRM, or a new SaaS application.</p>
-      <p>Someone has to read the old PL/SQL, UniBasic, scripts, mappings, or existing Data Connect pipelines. Trace the data flow. Find the Banner or Colleague tables and Ethos APIs. Reconstruct the business rules. Figure out what the current integration is really doing.</p>
-      <p>Then someone has to write the specification, map institutional data, build the implementation, create the tests, debug failures, deploy it, and keep it working as the institution moves more of its ecosystem to SaaS.</p>
+      <div class="narrow">
+        <span class="section-eyebrow">The problem</span>
+        <h2>Banner and Colleague integrations are hard to build and maintain.</h2>
+    
+        <p>Every Banner or Colleague integration becomes its own engineering project — whether it connects the SIS to an LMS, data warehouse, finance system, identity platform, CRM, or a new SaaS application.</p>
+        <p>Someone has to read the old PL/SQL, UniBasic, scripts, mappings, or existing Data Connect pipelines. Trace the data flow. Find the Banner or Colleague tables and Ethos APIs. Reconstruct the business rules. Figure out what the current integration is really doing.</p>
+        <p>Then someone has to write the specification, map institutional data, build the implementation, create the tests, debug failures, deploy it, and keep it working as the institution moves more of its ecosystem to SaaS.</p>
+        <ol class="sequence">
+          <li><span class="n">01</span><span>Understand the existing system.</span></li>
+          <li><span class="n">02</span><span>Design what should replace it.</span></li>
+          <li><span class="n">03</span><span>Build the new integration.</span></li>
+          <li><span class="n">04</span><span>Test and prove that it works.</span></li>
+          <li><span class="n">05</span><span>Deploy it and live with it for years.</span></li>
+        </ol>
+        <blockquote class="pull col-span-2">The problem is not only the amount of manual work. It is how much engineering knowledge gets created — and then lost.</blockquote>
+        <div>
+          
 
-      <ol class="sequence">
-        <li><span class="n">01</span><span>Understand the existing system.</span></li>
-        <li><span class="n">02</span><span>Design what should replace it.</span></li>
-        <li><span class="n">03</span><span>Build the new integration.</span></li>
-        <li><span class="n">04</span><span>Test and prove that it works.</span></li>
-        <li><span class="n">05</span><span>Deploy it and live with it for years.</span></li>
-      </ol>
-
-      <blockquote class="pull">The problem is not only the amount of manual work. It is how much engineering knowledge gets created — and then lost.</blockquote>
-
-      <p>Requirements live in one place. Mappings in another. Decisions are buried in meetings and tickets. Tests are separated from the reasoning behind them. The implementation ends up in a repository that explains what the code does, but not necessarily why.</p>
-      <p>And often, the most important part of the system still lives in the heads of the engineers who built it.</p>
-    </div>
+          <p>Requirements live in one place. Mappings in another. Decisions are buried in meetings and tickets. Tests are separated from the reasoning behind them. The implementation ends up in a repository that explains what the code does, but not necessarily why.</p>
+          <p>And often, the most important part of the system still lives in the heads of the engineers who built it.</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -94,26 +97,24 @@
   <section class="alt" id="shift">
     <div class="wrap ">
       <h2 class="bridge-title center">Akaden changes <span class="grad-text">who does the work.</span></h2>
-      <div class="bridge-copy center">
-        <p>In the traditional model, the integration engineer is wired directly into every part of the institution's ecosystem — Banner or Colleague, the data warehouse, LMS, student systems, pipelines, legacy applications, and whatever comes next.</p>
-        <p>The engineer carries the context and manually moves the work from one system and one SDLC step to another.</p>
-      </div>
-
-      <figure class="workflow-visual">
-        <div class="shift-img-wrap">
-          <span>Old Workflow</span>
-          <img src="assets/old-workflow.webp" alt="old workflow diagram" width="100%" height="auto" loading="lazy">
+      <div class="grid-2 half">
+        <div class="bridge-copy center">
+          <p>In the traditional model, the integration engineer is wired directly into every part of the institution's ecosystem — Banner or Colleague, the data warehouse, LMS, student systems, pipelines, legacy applications, and whatever comes next.</p>
+          <p>The engineer carries the context and manually moves the work from one system and one SDLC step to another.</p>
         </div>
-        <div class="shift-img-wrap">
-          <span>New Workflow</span>
-          <img src="assets/new-workflow.webp" alt="new workflow diagram" width="100%" height="auto" loading="lazy">
+        <div class="bridge-copy center">
+          <p>Akaden introduces a new layer between the engineer and those systems: specialized AI agents that can analyze, design, build, test, and carry project context across the workflow.</p>
         </div>
-      </figure>
-
-      <div class="bridge-copy center">
-        <p>Akaden introduces a new layer between the engineer and those systems: specialized AI agents that can analyze, design, build, test, and carry project context across the workflow.</p>
-        <p><strong>The systems are still the same. The engineering responsibility is still human. What changes is how the work gets executed.</strong></p>
+          <div class="shift-img-wrap">
+            <span>Old Workflow</span>
+            <img src="assets/old-workflow.webp" alt="old workflow diagram" width="100%" height="auto" loading="lazy">
+          </div>
+          <div class="shift-img-wrap">
+            <span>New Workflow</span>
+            <img src="assets/new-workflow.webp" alt="new workflow diagram" width="100%" height="auto" loading="lazy">
+          </div>
       </div>
+      <blockquote class="pull">The systems are still the same. The engineering responsibility is still human. What changes is how the work gets executed.</blockquote>
     </div>
   </section>
 
@@ -122,7 +123,7 @@
       <div class="narrow">
         <h2>The SDLC doesn't disappear. The engineer moves up a level.</h2>
         <p>You still need to understand the Banner or Colleague integration. You still need a target design. You still need mappings, an implementation, tests, deployment, and long-term maintenance.</p>
-        <p>What changes is the engineer's position in the process.</p>
+        <p><strong>What changes is the engineer's position in the process.</strong><p>
         <p>Instead of manually executing every step, the engineer sets the goal, reviews the work, makes decisions, and approves the result.</p>
         <p>Akaden coordinates the engineering work underneath: analyzing existing Banner/Colleague logic, reasoning over Ethos APIs and Data Connect artifacts, producing the target design and mappings, building the implementation, testing it, and carrying the resulting knowledge forward.</p>
         <blockquote class="pull">Akaden does not replace the SDLC. It changes the operating model for executing it.</blockquote>
@@ -166,41 +167,39 @@
 
   <section class="alt" id="why">
     <div class="wrap card-wrap">
-        <div class="narrow no-pb">
-          <span class="section-eyebrow">Why Akaden is different</span>
-          <h2>Akaden doesn't start from a blank prompt.</h2>
-          <p>Generic coding agents understand software. Akaden is being built around the integration technologies, data models, and modernization patterns higher-ed institutions actually use.</p>
-        </div>
-      
-      <div class="wrap">
-        <div class="formula">
-          <article class="card formula-part">
-            <h3>Higher-ed domain knowledge</h3>
-            <p>Banner, Colleague, Ethos APIs, Ellucian Data Connect, institutional data models, integration patterns, legacy technologies, and SaaS target architectures.</p>
-          </article>
-          <div class="formula-op">+</div>
-          <article class="card formula-part">
-            <h3>Engineering agents</h3>
-            <p>Analysis, design, implementation, testing, deployment, and maintenance.</p>
-          </article>
-          <div class="formula-op">+</div>
-          <article class="card formula-part">
-            <h3>Persistent project context</h3>
-            <p>Requirements, mappings, source code, generated artifacts, tests, decisions, and execution history.</p>
-          </article>
-        </div>
+      <div class="narrow no-pb">
+        <span class="section-eyebrow">Why Akaden is different</span>
+        <h2>Akaden doesn't start from a blank prompt.</h2>
+        <p>Generic coding agents understand software. Akaden is being built around the integration technologies, data models, and modernization patterns higher-ed institutions actually use.</p>
       </div>
-      <div class="wrap">
-        <div class=" no-pt">
-          <blockquote class="pull">The result is not a chatbot sitting beside the engineer. It is an engineering environment built around agents.</blockquote>
-        </div>
+      
+      <div class="formula">
+        <article class="card formula-part">
+          <h3>Higher-ed domain knowledge</h3>
+          <p>Banner, Colleague, Ethos APIs, Ellucian Data Connect, institutional data models, integration patterns, legacy technologies, and SaaS target architectures.</p>
+        </article>
+        <div class="formula-op">+</div>
+        <article class="card formula-part">
+          <h3>Engineering agents</h3>
+          <p>Analysis, design, implementation, testing, deployment, and maintenance.</p>
+        </article>
+        <div class="formula-op">+</div>
+        <article class="card formula-part">
+          <h3>Persistent project context</h3>
+          <p>Requirements, mappings, source code, generated artifacts, tests, decisions, and execution history.</p>
+        </article>
+      </div>
+      <div class="formula-op center">=</div>
+      <div class=" no-pt">
+        <blockquote class="pull">The result is not a chatbot sitting beside the engineer. It is an engineering environment built around agents.</blockquote>
       </div>
     </div>
   </section>
 
   <section class="alt">
     <div class="wrap">
-      <div class="grid-2 half">
+      <div class="grid-2 ">
+        <blockquote class="pull">The output is not just code. It is the integration — together with the knowledge required to understand, validate, and maintain it.</blockquote>
         <div>
           <span class="section-eyebrow">Persistent knowledge</span>
           <h2>The work becomes the knowledge.</h2>
@@ -208,7 +207,7 @@
           <p>What the analysis uncovers becomes context for design. What design decides becomes context for implementation. What gets built becomes input to testing. Test results become part of the project history.</p>
           <p>The engineering decisions stay with the project.</p>
         </div>
-        <blockquote class="pull">The output is not just code. It is the integration — together with the knowledge required to understand, validate, and maintain it.</blockquote>
+        
         
       </div>
     </div>
@@ -216,20 +215,22 @@
 
   <section id="testimonials">
     <div class="wrap">
-      <div class="grid-2 half">
+      <div class="grid-2 threetwo">
       
-      <div class="narrow">
-        <figure class="quote-feature">
-          <blockquote class="qtext">"Akaden gives integration engineers a single place to analyze requirements, generate pipelines, test APIs, and troubleshoot issues — letting us focus on solving business problems instead of managing tools."</blockquote>
-          <figcaption class="attr">— Data Integration Engineer</figcaption>
-        </figure>
-      </div>
-      <div class="narrow no-pb">
+      <figure class="quote-feature">
+        <blockquote class="qtext">Akaden gives integration engineers a single place to analyze requirements, generate pipelines, test APIs, and troubleshoot issues — letting us focus on solving business problems instead of managing tools.</blockquote>
+        <figcaption class="attr">— Data Integration Engineer</figcaption>
+      </figure>
+      <div class="">
         <span class="section-eyebrow">What users are saying</span>
         <h2>Early reactions from people doing the work.</h2>
         <p>ABCloudz's professional services team uses Akaden daily across multiple customer engagements — building, maintaining, monitoring, and debugging Ellucian Student integrations, and feeding real field feedback back into the product.</p>
       </div>
       </div>
+    </div>
+  </section>
+  <section class="tight">
+    <div class="wrap">
       <aside class="mid-cta">
         <span>The easiest way to understand Akaden is to see it work.</span>
         <a class="btn btn-sm" href="https://calendly.com/akaden-demo/intro" target="_blank" rel="noopener noreferrer">Book a Demo</a>
@@ -339,6 +340,20 @@
 </footer>
 
 <script>
+  const siteNav = document.querySelector('.site-nav');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        siteNav.classList.add('dark'); // Додаємо клас, коли секція в екрані
+      } else {
+        siteNav.classList.remove('dark');
+      }
+    });
+  }, { rootMargin: '-80px 0px -99% 0px', 
+  threshold: 0 });
+  const darkSections = document.querySelectorAll(`section.dark`);
+  darkSections.forEach(section => observer.observe(section));
+
   document.addEventListener('DOMContentLoaded', function () {
     const form = document.querySelector('.cta-form');
     const emailInput = document.getElementById('company-email');
