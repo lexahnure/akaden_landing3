@@ -52,23 +52,26 @@
     </div>
   </section>
 
-  <section id="story">
-    <div class="wrap">
+  <section class="alt" id="story">
+    <div class="wrap card">
     
-      <div class="narrow">
+      <div class="narrow center">
         <span class="section-eyebrow">The problem</span>
         <h2>Banner and Colleague integrations are hard to build and maintain.</h2>
     
         <p>Every Banner or Colleague integration becomes its own engineering project — whether it connects the SIS to an LMS, data warehouse, finance system, identity platform, CRM, or a new SaaS application.</p>
         <p>Someone has to read the old PL/SQL, UniBasic, scripts, mappings, or existing Data Connect pipelines. Trace the data flow. Find the Banner or Colleague tables and Ethos APIs. Reconstruct the business rules. Figure out what the current integration is really doing.</p>
         <p>Then someone has to write the specification, map institutional data, build the implementation, create the tests, debug failures, deploy it, and keep it working as the institution moves more of its ecosystem to SaaS.</p>
-        <ol class="sequence">
+      </div>
+      <ol class="sequence">
           <li><span class="n">01</span><span>Understand the existing system.</span></li>
           <li><span class="n">02</span><span>Design what should replace it.</span></li>
           <li><span class="n">03</span><span>Build the new integration.</span></li>
           <li><span class="n">04</span><span>Test and prove that it works.</span></li>
           <li><span class="n">05</span><span>Deploy it and live with it for years.</span></li>
         </ol>
+      <div class="narrow center">
+        
         <blockquote class="pull col-span-2">The problem is not only the amount of manual work. It is how much engineering knowledge gets created — and then lost.</blockquote>
         <div>
           
@@ -82,7 +85,7 @@
 
   <section class="dark">
     <div class="wrap"> 
-      <div class="narrow">
+      <div class="narrow center">
         <span class="section-eyebrow on-dark">The inflection point</span>
         <h2>Meanwhile, software engineering changed.</h2>
         <p>AI started as autocomplete. Then chat. Then code generation.</p>
@@ -118,23 +121,31 @@
     </div>
   </section>
 
-  <section>
-    <div class="wrap">
+  <section class="alt">
+    <div class="wrap card">
       <div class="narrow">
-        <h2>The SDLC doesn't disappear. The engineer moves up a level.</h2>
+        <h2>The SDLC doesn't disappear. <br> The engineer moves up a level.</h2>
+      </div>
+      <div class="grid-2 half">
+        <div>
         <p>You still need to understand the Banner or Colleague integration. You still need a target design. You still need mappings, an implementation, tests, deployment, and long-term maintenance.</p>
-        <p><strong>What changes is the engineer's position in the process.</strong><p>
+        <p><strong>What changes is the engineer's position in the process.</strong></p>
         <p>Instead of manually executing every step, the engineer sets the goal, reviews the work, makes decisions, and approves the result.</p>
         <p>Akaden coordinates the engineering work underneath: analyzing existing Banner/Colleague logic, reasoning over Ethos APIs and Data Connect artifacts, producing the target design and mappings, building the implementation, testing it, and carrying the resulting knowledge forward.</p>
+        </div>
         <blockquote class="pull">Akaden does not replace the SDLC. It changes the operating model for executing it.</blockquote>
-        <aside class="mid-cta">
-          <span>See what this operating model looks like on a real integration.</span>
-          <a class="btn btn-sm" href="https://calendly.com/akaden-demo/intro" target="_blank" rel="noopener noreferrer">Book a Demo</a>
-        </aside>
+        
       </div>
     </div>
   </section>
-
+  <section class="tight alt">
+    <div class="wrap">
+      <aside class="mid-cta col-span-2">
+          <span>See what this operating model looks like on a real integration.</span>
+          <a class="btn btn-sm" href="https://calendly.com/akaden-demo/intro" target="_blank" rel="noopener noreferrer">Book a Demo</a>
+        </aside>
+    </div>
+  </section>
   <section class="alt" id="usecases">
     <div class="wrap">
       <div class="narrow no-pb">
@@ -198,15 +209,13 @@
 
   <section class="alt">
     <div class="wrap">
-      <div class="grid-2 ">
-        <blockquote class="pull">The output is not just code. It is the integration — together with the knowledge required to understand, validate, and maintain it.</blockquote>
-        <div>
+      <div class="narrow ">
           <span class="section-eyebrow">Persistent knowledge</span>
           <h2>The work becomes the knowledge.</h2>
           <p>Akaden does not treat every AI interaction as an isolated conversation.</p>
           <p>What the analysis uncovers becomes context for design. What design decides becomes context for implementation. What gets built becomes input to testing. Test results become part of the project history.</p>
           <p>The engineering decisions stay with the project.</p>
-        </div>
+          <blockquote class="pull">The output is not just code. It is the integration — together with the knowledge required to understand, validate, and maintain it.</blockquote>
         
         
       </div>
@@ -215,17 +224,16 @@
 
   <section id="testimonials">
     <div class="wrap">
-      <div class="grid-2 threetwo">
-      
-      <figure class="quote-feature">
+      <div class="grid-2 ">
+        <div class="">
+          <span class="section-eyebrow">What users are saying</span>
+          <h2>Early reactions from people doing the work.</h2>
+          <p>ABCloudz's professional services team uses Akaden daily across multiple customer engagements — building, maintaining, monitoring, and debugging Ellucian Student integrations, and feeding real field feedback back into the product.</p>
+        </div>
+        <figure class="quote-feature">
         <blockquote class="qtext">Akaden gives integration engineers a single place to analyze requirements, generate pipelines, test APIs, and troubleshoot issues — letting us focus on solving business problems instead of managing tools.</blockquote>
         <figcaption class="attr">— Data Integration Engineer</figcaption>
       </figure>
-      <div class="">
-        <span class="section-eyebrow">What users are saying</span>
-        <h2>Early reactions from people doing the work.</h2>
-        <p>ABCloudz's professional services team uses Akaden daily across multiple customer engagements — building, maintaining, monitoring, and debugging Ellucian Student integrations, and feeding real field feedback back into the product.</p>
-      </div>
       </div>
     </div>
   </section>
@@ -240,7 +248,7 @@
 
   <section class="dark" id="proof">
     <div class="wrap"> 
-      <div class="narrow">
+      <div class="narrow center">
         <span class="section-eyebrow on-dark">Built from real integration work</span>
         <h2>Akaden started with real higher-ed modernization work.</h2>
         <p>As we introduced agentic AI into real Banner, Colleague, and higher-ed integration modernization projects, the interesting question was not simply whether AI could write code.</p>

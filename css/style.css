@@ -29,6 +29,7 @@
   --shadow-sm: 0 0.0625rem 0.1875rem rgba(15, 23, 42, 0.08);
   --shadow-md: 0 0.75rem 1.75rem rgba(76, 29, 149, 0.14);
   --shadow-lg: 0 1.5rem 3.5rem rgba(76, 29, 149, 0.22);
+  --easing-spring: linear(0, 0.453 7.8%, 0.803 16.1%, 1.048 24.9%, 1.132 29.5%, 1.194 34.4%, 1.227 38.4%, 1.245 42.5%, 1.25 46.9%, 1.242 51.7%, 1.2 60.5%, 1.038 84.9%, 1.009 92.5%, 1);
 }
 
 /* --------------------------------------------------------------------------
@@ -139,7 +140,7 @@ p:last-child {
 }
 
 .card-wrap {
-  padding: 2rem;
+  padding: 2.5rem;
   background: var(--blue-pale);
   border-radius: 2rem;
 }
@@ -150,7 +151,7 @@ p:last-child {
 
 .narrow {
   max-width: 50rem;
-  margin: 0;
+  margin: 1.5rem 0 0;
   /* padding: 0 1.5rem; */
 }
 
@@ -170,7 +171,7 @@ section.alt {
   background: var(--bg-alt);
 }
 section.tight {
-  padding-block: 2rem 4rem;
+  padding-block: 1.25rem 4rem;
 }
 
 section.dark {
@@ -192,6 +193,16 @@ strong {
   font-weight: 600;
 }
 
+.col-span-2 {
+  grid-column: span 2;
+}
+.center {
+  margin-inline: auto;
+}
+
+.end {
+  margin-left: auto;
+}
 /* --------------------------------------------------------------------------
    5. Buttons & Interactive Links (Deduplicated)
    -------------------------------------------------------------------------- */
@@ -205,7 +216,7 @@ strong {
   text-decoration: none;
   cursor: pointer;
   border: none;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, background-position 0.4s ease;
+  transition: all 0.4s var(--easing-spring);
 }
 
 .btn:hover,
@@ -245,7 +256,8 @@ strong {
 .btn:hover,
 .btn:focus-visible {
   box-shadow: var(--shadow-lg);
-  background-position: 100% 40%;
+  background-size: 120% 120%;
+  transform: scale(1.05);
 }
 
 .btn:focus-visible {
@@ -582,6 +594,11 @@ section.hero h1 {
   display: flex;
   gap: 0.875rem;
   color: var(--blue-dark);
+  animation: sequence linear both;
+  animation-timeline: view();
+  animation-range: entry 35vh  entry 65vh;
+  transform: translateX(100px);
+  transition: all .3s ease-in-out;
 }
 
 .sequence li {
@@ -591,6 +608,9 @@ section.hero h1 {
   gap: 0.75rem;
   align-items: baseline;
   font-weight: 500;
+  border: 1px solid var(--border);
+  padding: 1rem;
+  border-radius: var(--radius);
 }
 
 .sequence .n {
@@ -709,6 +729,7 @@ section.dark .pull {
   font-weight: 600;
   font-size: 1.25rem;
   color: var(--navy);
+  line-height: 1.25;
 }
 
 section.dark .mid-cta {
@@ -822,9 +843,10 @@ section.dark .mid-cta span {
 } */
 
 .card {
-  padding: 1.75rem;
+  padding: 2.5rem;
   display: flex;
   flex-direction: column;
+  overflow: clip;
 }
 
 .usecase-card h3 {
@@ -841,8 +863,9 @@ section.dark .mid-cta span {
   font-weight: 600;
   color: var(--blue); 
   display: inline-block;
-  padding: 0.5rem 0.75rem;
+  padding: 0.5rem 0;
   align-self: flex-start;
+  word-spacing: .25rem;
 }
 
 .flow-tag b {
@@ -957,10 +980,11 @@ section.dark .mid-cta span {
 }
 
 .qa-item {
-  border-top: 1px solid var(--border);
+  border-top: 1px solid;
+  border-color: var(--border);
   padding: 0 1.25rem;
   /* border-radius: var(--radius); */
-  transition: background-color 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  transition: all 0.3s var(--easing-spring);
 }
 
 .qa-item:last-child {
@@ -1031,7 +1055,7 @@ section.dark .mid-cta span {
 
 .qa-item p {
   margin-top: 0.875rem;
-  font-size: 0.9375rem;
+  font-size: 1rem;
   margin-bottom: 0;
 }
 
@@ -1144,6 +1168,22 @@ footer {
   .bridge-copy:nth-of-type(2) {
     margin-top: 1rem;
     grid-row: 3/4;
+  }
+  .card-wrap, .card {
+    padding: 1.5rem;
+  }
+  .sequence {
+    animation: none;
+    transform: translate(0);
+  }
+  .sequence li {
+    animation: sequence linear both;
+    animation-timeline: view();
+    animation-range: entry 10vh  entry 25vh;
+    transform: translateX(50%);
+    filter: blur(4px);
+    opacity: 0;
+    transition: all .3s ease-in-out;
   }
 }
 
@@ -1265,14 +1305,14 @@ footer {
   border: none;
   border-radius: 10rem;
   box-shadow: var(--shadow-md);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background-position 0.4s ease;
+  transition: all 0.4s var(--easing-spring);
 }
 
 .cta-form .form-submit-btn:hover,
 .cta-form .form-submit-btn:focus-visible {
   box-shadow: var(--shadow-lg);
-  background-position: 100% 40%;
-  transform: translateY(-0.125rem);
+  background-size: 120% 120%;
+  transform: scale(1.05);
 }
 
 @media (max-width: 36rem) {
@@ -1281,6 +1321,10 @@ footer {
   }
   .form-row {
     grid-template-columns: 1fr;
+  }
+  .mid-cta a {
+    width: 100%;
+    text-align: center;
   }
 }
 
@@ -1291,5 +1335,13 @@ footer {
     border-radius: 10rem;
     box-shadow: 0 .75rem 2rem -.5rem rgba(0 0 0 /.15);
     margin-inline: .75rem;
+  }
+}
+
+@keyframes sequence {
+  to {
+    transform: translateX(0);
+    filter: blur(0);
+    opacity: 1;
   }
 }
