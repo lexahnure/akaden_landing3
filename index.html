@@ -451,74 +451,44 @@
             }
 
             const scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
-            const trackDocTop = track.getBoundingClientRect().top + scrollY;
-            const pinnedDistance = track.offsetHeight - windowHeight;
-            const totalDistance = Math.max(1, trackDocTop + pinnedDistance);
-
-            // Progress starts at 0 at the very top (scrollY = 0) and grows immediately from the start of scroll
-            const progress = Math.min(Math.max(scrollY / totalDistance, 0), 1);
+            const headerElement = document.querySelector('.site-header');
+            const headerHeight = headerElement ? headerElement.offsetHeight : 74;
+            const stageHeight = windowHeight - headerHeight;
+            const trackDocTop = Math.max(1, track.getBoundingClientRect().top + scrollY);
+            const frameHeight = viewport.offsetHeight || 600;
+            const initialTop = 32; // 2rem
+            const targetCenterTop = Math.max(initialTop, (stageHeight - frameHeight) / 2);
+            const responsiveViewportWidth = 'min(70rem, 88vw, calc((100vh - 8rem) * 1.536))';
 
             const initialWidth = Math.min(1200, windowWidth - 40); // 75rem container
             const initialHeight = 320; // 20rem
             const initialRadius = 24; // 1.5rem
-            const initialTop = 32; // 2rem
-            const responsiveViewportWidth = 'min(70rem, 88vw, calc((100vh - 5rem) * 1.536))';
 
-            const phase1End = 0.28;
-            const phase2End = 0.68;
+            // 1. Фіолетовий фон росте значно швидше, ніж скролиться скріншот
+            // Повне розгортання досягається вже за перші ~200px скролу і не перекриває хедер
+            const bgGrowthDistance = Math.min(220, Math.max(140, (trackDocTop - headerHeight) * 0.65));
+            const bgProgress = Math.min(Math.max(scrollY / bgGrowthDistance, 0), 1);
 
-            // Phase 1: progress 0.0 -> phase1End: Lavender block grows immediately and expands to full screen (100vw × 100vh)
-            if (progress <= phase1End) {
-              const p1 = progress / phase1End;
-              const curW = initialWidth + p1 * (windowWidth - initialWidth);
-              const curH = initialHeight + p1 * (windowHeight - initialHeight);
-              const curRad = (1 - p1) * initialRadius;
+            const curW = initialWidth + bgProgress * (windowWidth - initialWidth);
+            const curH = initialHeight + bgProgress * (stageHeight - initialHeight);
+            const curRad = (1 - bgProgress) * initialRadius;
 
-              heroBg.style.width = `${curW}px`;
-              heroBg.style.height = `${curH}px`;
-              heroBg.style.borderRadius = `${curRad}px ${curRad}px 0 0`;
-              heroBg.style.maxWidth = '100vw';
+            heroBg.style.width = `${curW}px`;
+            heroBg.style.height = `${curH}px`;
+            heroBg.style.borderRadius = `${curRad}px ${curRad}px 0 0`;
+            heroBg.style.maxWidth = '100vw';
 
-              viewport.style.position = 'absolute';
-              viewport.style.top = `${initialTop}px`;
-              viewport.style.left = '50%';
-              viewport.style.transform = 'translateX(-50%)';
-              viewport.style.width = responsiveViewportWidth;
-            } 
-            // Phase 2: progress phase1End -> phase2End: Screenshot moves to exact vertical center of screen
-            else if (progress <= phase2End) {
-              heroBg.style.width = `${windowWidth}px`;
-              heroBg.style.height = `${windowHeight}px`;
-              heroBg.style.borderRadius = '0';
-              heroBg.style.maxWidth = '100vw';
+            // 2. Скріншот скролиться вгору прямо до центру екрану під хедером і там фіксується.
+            // Жодного зворотного руху вниз — досягнувши центру, він залишається по центру
+            const pinThreshold = Math.max(1, trackDocTop - headerHeight);
+            const screenshotProgress = Math.min(Math.max(scrollY / pinThreshold, 0), 1);
+            const curTop = initialTop + screenshotProgress * (targetCenterTop - initialTop);
 
-              const p2 = (progress - phase1End) / (phase2End - phase1End);
-              const frameHeight = viewport.offsetHeight || 600;
-              const targetCenterTop = Math.max(initialTop, (windowHeight - frameHeight) / 2);
-              const curTop = initialTop + p2 * (targetCenterTop - initialTop);
-
-              viewport.style.position = 'absolute';
-              viewport.style.top = `${curTop}px`;
-              viewport.style.left = '50%';
-              viewport.style.transform = 'translateX(-50%)';
-              viewport.style.width = responsiveViewportWidth;
-            } 
-            // Phase 3: progress > phase2End: Screenshot stays centered; whole section scrolls away at the end
-            else {
-              heroBg.style.width = `${windowWidth}px`;
-              heroBg.style.height = `${windowHeight}px`;
-              heroBg.style.borderRadius = '0';
-              heroBg.style.maxWidth = '100vw';
-
-              const frameHeight = viewport.offsetHeight || 600;
-              const targetCenterTop = Math.max(initialTop, (windowHeight - frameHeight) / 2);
-
-              viewport.style.position = 'absolute';
-              viewport.style.top = `${targetCenterTop}px`;
-              viewport.style.left = '50%';
-              viewport.style.transform = 'translateX(-50%)';
-              viewport.style.width = responsiveViewportWidth;
-            }
+            viewport.style.position = 'absolute';
+            viewport.style.top = `${curTop}px`;
+            viewport.style.left = '50%';
+            viewport.style.transform = 'translateX(-50%)';
+            viewport.style.width = responsiveViewportWidth;
 
             isTicking = false;
           });
