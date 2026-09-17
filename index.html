@@ -121,28 +121,46 @@
     </section>
 
     <!-- Section Workflow: old workflow стікі, і до нього підскролюється новий воркфлоу -->
+    <!-- Section Workflow:
+         - Old Workflow: картинка зліва, текст справа
+         - При скролі: New Workflow схема підскролюється на один рівень з Old Workflow схемою
+         - Текст New Workflow проскролюється під обома схемами
+    -->
     <section class="workflow-section" id="workflow">
       <div class="workflow-container">
         <h2 class="workflow-title">Meanwhile, software engineering changed</h2>
-        <div class="workflow-split">
-          <!-- Left Column: Text blocks (Old workflow text scrolls, then New workflow text scrolls) -->
-          <div class="workflow-text-col">
-            <div class="workflow-text-block old-text-block">
-              <p>AI started as autocomplete. Then chat. Then code generation. Now agents can participate in the engineering process itself — analyzing code, reasoning across artifacts, generating implementations, executing tests, and iterating on the results.</p>
-              <p>In the traditional model, the integration engineer is wired directly into every part of the institution's ecosystem — Banner or Colleague, the data warehouse, the LMS, legacy applications, and whatever comes next. The engineer carries the context and manually moves the work from one system and one step to another.</p>
-            </div>
-            <div class="workflow-text-block new-text-block">
-              <p>Akaden introduces a new layer between the engineer and those systems: specialized AI agents that analyze, design, build, test, and carry project context across the workflow. The systems stay the same. The steps stay the same — prepare, specify, build, test, deploy, validate. What changes is who executes them, and how much the engineer has to hold in their head to do it.</p>
-            </div>
-          </div>
 
-          <!-- Right Column: Sticky Diagrams (Old diagram stays sticky until New diagram scrolls up to replace it) -->
-          <div class="workflow-diagram-col">
-            <div class="workflow-diagram-item old-diagram-item">
-              <img src="assets/old-workflow.png" alt="Old Workflow Architecture Diagram" width="560" height="340" loading="lazy">
+        <div class="workflow-stage-track" id="workflow-stage-track">
+          <div class="workflow-stage-sticky" id="workflow-stage-sticky">
+            <!-- Верхній рівень: обидві схеми на одному рівні (зліва Old Diagram, справа Old Text -> New Diagram) -->
+            <div class="workflow-stage-diagrams">
+              <!-- Ліва колонка: Old Workflow схема -->
+              <div class="workflow-col-left">
+                <div class="workflow-diagram-box old-diagram-box">
+                  <img src="assets/old-workflow.png" alt="Old Workflow Architecture Diagram" width="560" height="340" loading="lazy">
+                </div>
+              </div>
+
+              <!-- Права колонка: спочатку текст Old Workflow, потім на його місце підскролюється New Workflow схема -->
+              <div class="workflow-col-right" id="workflow-col-right">
+                <!-- Текст Old Workflow (картинка і текст поміняні місцями: текст справа) -->
+                <div class="workflow-old-text-panel" id="workflow-old-text-panel">
+                  <p>AI started as autocomplete. Then chat. Then code generation. Now agents can participate in the engineering process itself — analyzing code, reasoning across artifacts, generating implementations, executing tests, and iterating on the results.</p>
+                  <p>In the traditional model, the integration engineer is wired directly into every part of the institution's ecosystem — Banner or Colleague, the data warehouse, the LMS, legacy applications, and whatever comes next. The engineer carries the context and manually moves the work from one system and one step to another.</p>
+                </div>
+
+                <!-- Схема New Workflow (підскролюється на один рівень з Old Workflow) -->
+                <div class="workflow-diagram-box new-diagram-box" id="workflow-new-diagram-box">
+                  <img src="assets/new-workflow.png" alt="New Workflow Architecture Diagram" width="560" height="340" loading="lazy">
+                </div>
+              </div>
             </div>
-            <div class="workflow-diagram-item new-diagram-item">
-              <img src="assets/new-workflow.png" alt="New Workflow Architecture Diagram" width="560" height="340" loading="lazy">
+
+            <!-- Нижній рівень: текст New Workflow проскролюється під обома схемами -->
+            <div class="workflow-new-text-row" id="workflow-new-text-row">
+              <div class="workflow-new-text-content" id="workflow-new-text-content">
+                <p>Akaden introduces a new layer between the engineer and those systems: specialized AI agents that analyze, design, build, test, and carry project context across the workflow. The systems stay the same. The steps stay the same — prepare, specify, build, test, deploy, validate. What changes is who executes them, and how much the engineer has to hold in their head to do it.</p>
+              </div>
             </div>
           </div>
         </div>
@@ -435,6 +453,73 @@
       window.addEventListener('resize', onScroll, { passive: true });
       screenshot.addEventListener('load', onScroll);
       onScroll();
+    })();
+
+    // Workflow Section: scrubbing of Old Text -> New Diagram -> New Text underneath
+    (function () {
+      const track = document.getElementById('workflow-stage-track');
+      const stickyWindow = document.getElementById('workflow-stage-sticky');
+      const oldTextPanel = document.getElementById('workflow-old-text-panel');
+      const newDiagramBox = document.getElementById('workflow-new-diagram-box');
+      const newTextContent = document.getElementById('workflow-new-text-content');
+
+      if (!track || !stickyWindow || !oldTextPanel || !newDiagramBox || !newTextContent) return;
+
+      let isTicking = false;
+
+      function onWorkflowScroll() {
+        if (!isTicking) {
+          window.requestAnimationFrame(() => {
+            if (window.innerWidth <= 1024) {
+              oldTextPanel.style.transform = '';
+              oldTextPanel.style.opacity = '';
+              newDiagramBox.style.transform = '';
+              newTextContent.style.transform = '';
+              newTextContent.style.opacity = '';
+              isTicking = false;
+              return;
+            }
+
+            const trackRect = track.getBoundingClientRect();
+            const topOffset = parseFloat(window.getComputedStyle(stickyWindow).top) || 88;
+            const pinnedDistance = track.offsetHeight - stickyWindow.offsetHeight;
+
+            if (pinnedDistance > 0) {
+              const currentScroll = topOffset - trackRect.top;
+              const progress = Math.min(Math.max(currentScroll / pinnedDistance, 0), 1);
+
+              // Phase 1: progress 0.0 to 0.45 -> New diagram scrolls up into right slot, replacing Old text
+              if (progress <= 0.45) {
+                const p1 = progress / 0.45;
+                oldTextPanel.style.transform = `translateY(${-p1 * 105}%)`;
+                oldTextPanel.style.opacity = `${Math.max(0, 1 - p1 * 1.5)}`;
+                newDiagramBox.style.transform = `translateY(${(1 - p1) * 100}%)`;
+                
+                newTextContent.style.transform = `translateY(2rem)`;
+                newTextContent.style.opacity = '0';
+              } else {
+                // New diagram is fully pinned at the same level as Old diagram
+                oldTextPanel.style.transform = `translateY(-105%)`;
+                oldTextPanel.style.opacity = '0';
+                newDiagramBox.style.transform = `translateY(0)`;
+
+                // Phase 2: progress 0.45 to 0.85 -> New text scrolls up underneath both diagrams
+                const p2 = Math.min(Math.max((progress - 0.45) / 0.4, 0), 1);
+                const textTranslate = (1 - p2) * 2;
+                newTextContent.style.transform = `translateY(${textTranslate}rem)`;
+                newTextContent.style.opacity = `${p2}`;
+              }
+            }
+
+            isTicking = false;
+          });
+          isTicking = true;
+        }
+      }
+
+      window.addEventListener('scroll', onWorkflowScroll, { passive: true });
+      window.addEventListener('resize', onWorkflowScroll, { passive: true });
+      onWorkflowScroll();
     })();
 
     // Q&A Accordion interactive icon toggling (+ / -)

@@ -462,13 +462,13 @@ button, input, textarea {
 
 /* --------------------------------------------------------------------------
    6. Section Workflow
-   - текст олд воркфлоу проскролюється
-   - схема олд воркфлоу лишається стікі, поки друга схема не проскролиться
-   - підписи олд і нью воркфлоу прибрано з тексту (є на самих схемах)
+   - Old workflow: картинка зліва, текст справа
+   - При скролі: New workflow схема підскролюється на один рівень з Old workflow схемою
+   - Текст New workflow проскролюється під обома схемами
    -------------------------------------------------------------------------- */
 .workflow-section {
   background: #FFFFFF;
-  padding: 6.25rem 1.25rem 8rem;
+  padding: 6.25rem 1.25rem 4rem;
   position: relative;
 }
 
@@ -485,76 +485,125 @@ button, input, textarea {
   margin-bottom: 3.5rem;
 }
 
-.workflow-split {
+/* Scroll track providing vertical scroll room for stage scrubbing */
+.workflow-stage-track {
+  height: 220vh;
+  position: relative;
+}
+
+.workflow-stage-sticky {
+  position: sticky;
+  top: 5.5rem; /* Pinned cleanly below header */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  z-index: 10;
+  background: #FFFFFF;
+  padding-bottom: 2rem;
+}
+
+/* Top Level: Both diagrams side-by-side at the same horizontal level */
+.workflow-stage-diagrams {
   display: grid;
   grid-template-columns: 35rem 35rem; /* 560px 560px */
   gap: 2.5rem;
   justify-content: space-between;
-  align-items: stretch;
+  align-items: start;
 }
 
-/* Left Column: text blocks */
-.workflow-text-col {
-  display: flex;
-  flex-direction: column;
-}
-
-.workflow-text-block {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.workflow-text-block p {
-  font-size: 1.125rem; /* 18px */
-  font-weight: 400;
-  line-height: 1.7;
-  color: var(--color-text-subtle);
-}
-
-.workflow-text-block.old-text-block {
-  margin-bottom: 24rem; /* Provides scroll room for text while old diagram is sticky */
-}
-
-.workflow-text-block.new-text-block {
-  padding-bottom: 16rem;
-}
-
-/* Right Column: sticky diagrams */
-.workflow-diagram-col {
-  position: relative;
-  height: 100%;
-  padding-bottom: 16rem;
-}
-
-.workflow-diagram-item {
+/* Left Column: Old Workflow diagram */
+.workflow-col-left {
   width: 100%;
-  max-width: 35rem; /* 560px */
+  max-width: 35rem;
+}
+
+.workflow-diagram-box {
+  width: 100%;
+  max-width: 35rem;
   background: #FFFFFF;
   border-radius: 0.625rem;
+  overflow: hidden;
 }
 
-.workflow-diagram-item img {
+.workflow-diagram-box img {
   width: 100%;
   height: auto;
   border-radius: 0.625rem;
   display: block;
 }
 
-/* Old Diagram stays sticky until new diagram scrolls up to replace it */
-.workflow-diagram-item.old-diagram-item {
-  position: sticky;
-  top: 6rem;
-  z-index: 1;
+/* Right Column: holds Old Text and New Diagram in identical 340px box */
+.workflow-col-right {
+  width: 100%;
+  max-width: 35rem;
+  height: 21.25rem; /* 340px - matches diagram height */
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.625rem;
+  background: #FFFFFF;
 }
 
-/* New Diagram scrolls up and sticks right over old diagram */
-.workflow-diagram-item.new-diagram-item {
-  position: sticky;
-  top: 6rem;
-  z-index: 2;
-  margin-top: 24rem; /* Matches the vertical offset of the new text block */
-  box-shadow: 0 -0.5rem 1.5rem rgba(0, 0, 0, 0.04);
+.workflow-old-text-panel {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.25rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  will-change: transform, opacity;
+  transition: transform 0.05s linear, opacity 0.05s linear;
+}
+
+.workflow-old-text-panel p {
+  font-size: 1.125rem; /* 18px */
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--color-text-subtle);
+}
+
+.workflow-diagram-box.new-diagram-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: translateY(100%);
+  will-change: transform;
+  transition: transform 0.05s linear;
+  background: #FFFFFF;
+}
+
+/* Bottom Level: New Workflow Text scrolling underneath both diagrams */
+.workflow-new-text-row {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+.workflow-new-text-content {
+  max-width: 52.5rem; /* 840px */
+  width: 100%;
+  text-align: center;
+  transform: translateY(2rem);
+  opacity: 0;
+  will-change: transform, opacity;
+  transition: transform 0.05s linear, opacity 0.05s linear;
+  padding: 1.5rem 2rem;
+  background: #FAFAFB;
+  border-radius: 0.75rem;
+  border: 0.0625rem solid rgba(226, 232, 240, 0.8);
+}
+
+.workflow-new-text-content p {
+  font-size: 1.1875rem; /* 19px */
+  font-weight: 400;
+  line-height: 1.65;
+  color: var(--color-text-dark);
 }
 
 /* --------------------------------------------------------------------------
@@ -1195,39 +1244,54 @@ button, input, textarea {
     gap: 2.5rem;
   }
 
-  .workflow-split {
-    display: flex;
-    flex-direction: column;
-    gap: 2.5rem;
+  .workflow-stage-track {
+    height: auto;
   }
 
-  .workflow-text-col,
-  .workflow-diagram-col {
-    display: contents;
-  }
-
-  .workflow-text-block.old-text-block {
-    order: 1;
-    margin-bottom: 0;
-  }
-
-  .workflow-diagram-item.old-diagram-item {
-    order: 2;
+  .workflow-stage-sticky {
     position: static;
-    margin-top: 0;
-    margin-bottom: 2rem;
-  }
-
-  .workflow-text-block.new-text-block {
-    order: 3;
+    gap: 2rem;
     padding-bottom: 0;
   }
 
-  .workflow-diagram-item.new-diagram-item {
-    order: 4;
+  .workflow-stage-diagrams {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .workflow-col-left,
+  .workflow-col-right {
+    max-width: 100%;
+    height: auto;
     position: static;
-    margin-top: 0;
-    box-shadow: none;
+    overflow: visible;
+  }
+
+  .workflow-old-text-panel {
+    position: static;
+    transform: none !important;
+    opacity: 1 !important;
+    margin-top: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .workflow-diagram-box.new-diagram-box {
+    position: static;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+
+  .workflow-new-text-row {
+    margin-top: 1.25rem;
+  }
+
+  .workflow-new-text-content {
+    transform: none !important;
+    opacity: 1 !important;
+    text-align: left;
+    max-width: 100%;
+    padding: 1.25rem 1.5rem;
   }
 
   .knowledge-title {
