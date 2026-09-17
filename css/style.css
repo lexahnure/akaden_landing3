@@ -243,58 +243,58 @@ button, input, textarea {
   gap: 1.25rem;
 }
 
-/* Sticky Scroll Track */
+/* Sticky Scroll Track for Full-screen Expansion and Screenshot Centering */
 .hero-scroll-track {
-  height: 180vh; /* Provides the scroll distance to scrub through the screenshot */
+  height: 300vh;
   position: relative;
   margin-top: 1.5rem;
 }
 
-.hero-sticky-window {
+.hero-sticky-stage {
   position: sticky;
-  top: 5.5rem; /* Sits cleanly below sticky navigation */
+  top: 0;
   width: 100%;
+  height: 100vh;
   display: flex;
+  align-items: flex-start;
   justify-content: center;
-  padding: 0 1.25rem;
-  z-index: 10;
+  overflow: hidden;
+  z-index: 1100;
 }
 
-/* Indigo background container starting below CTA buttons */
+/* Lavender background container (#DEE2F7) */
 .hero-bg-accent {
-  width: 100%;
-  max-width: var(--container-max-width);
-  background: linear-gradient(180deg, rgba(178, 191, 255, 0.45) 0%, rgba(178, 191, 255, 0.25) 100%);
-  border-radius: 1.25rem 1.25rem 0 0;
-  padding: 2.5rem 2.5rem 0 2.5rem;
-  overflow: hidden; /* Clips the screenshot */
-  height: 34rem;    /* Fixed viewport window height */
+  width: min(var(--container-max-width), calc(100vw - 2.5rem));
+  height: 20rem; /* Initial clipped height matching media_1789668562246.png */
+  background-color: #DEE2F7;
+  border-radius: 1.5rem 1.5rem 0 0;
+  overflow: hidden;
+  position: relative;
   display: flex;
   justify-content: center;
+  margin: 0 auto;
+  will-change: width, height, border-radius;
 }
 
 .hero-screenshot-viewport {
-  width: 100%;
-  max-width: 60rem; /* 960px */
-  height: 100%;
-  overflow: hidden; /* Viewport clipping */
-  border-radius: 0.5rem 0.5rem 0 0;
-  border: 0.0625rem solid var(--color-border-subtle);
-  border-bottom: none;
+  width: min(70rem, 88vw, calc((100vh - 5rem) * 1.536));
+  position: absolute;
+  top: 2rem; /* Initial top position inside lavender container */
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 0.75rem;
+  box-shadow: 0 1rem 3rem rgba(15, 23, 42, 0.12);
   background: #FFFFFF;
-  position: relative;
+  overflow: hidden;
+  will-change: top, width;
 }
 
 .hero-screenshot {
   width: 100%;
   height: auto;
   display: block;
-  padding: 0;       /* No padding per user request */
-  box-shadow: none; /* No shadow per user request */
+  padding: 0;
   border: none;
-  transform: translateY(0);
-  will-change: transform;
-  transition: transform 0.05s linear;
 }
 
 /* --------------------------------------------------------------------------
@@ -462,9 +462,11 @@ button, input, textarea {
 
 /* --------------------------------------------------------------------------
    6. Section Workflow
-   - Old workflow: картинка зліва, текст справа
-   - При скролі: New workflow схема підскролюється на один рівень з Old workflow схемою
-   - Текст New workflow проскролюється під обома схемами
+   - Old workflow: схема зліва, текст справа
+   - При скролі: Old workflow схема лишається по центру вертикалі (sticky)
+   - Текст і схема New workflow підскролюються в правій колонці
+   - Обидві схеми лишаються поруч на екрані на одному рівні на пів скролу
+   - Далі скролиться вся секція
    -------------------------------------------------------------------------- */
 .workflow-section {
   background: #FFFFFF;
@@ -485,125 +487,77 @@ button, input, textarea {
   margin-bottom: 3.5rem;
 }
 
-/* Scroll track providing vertical scroll room for stage scrubbing */
-.workflow-stage-track {
-  height: 220vh;
-  position: relative;
-}
-
-.workflow-stage-sticky {
-  position: sticky;
-  top: 5.5rem; /* Pinned cleanly below header */
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 2.5rem;
-  z-index: 10;
-  background: #FFFFFF;
-  padding-bottom: 2rem;
-}
-
-/* Top Level: Both diagrams side-by-side at the same horizontal level */
-.workflow-stage-diagrams {
+.workflow-layout {
   display: grid;
   grid-template-columns: 35rem 35rem; /* 560px 560px */
   gap: 2.5rem;
   justify-content: space-between;
-  align-items: start;
+  align-items: stretch;
+  position: relative;
 }
 
-/* Left Column: Old Workflow diagram */
+/* Left Column: Old Workflow Diagram pinned at vertical center */
 .workflow-col-left {
   width: 100%;
   max-width: 35rem;
+  position: relative;
 }
 
-.workflow-diagram-box {
+.workflow-sticky-diagram {
   width: 100%;
   max-width: 35rem;
   background: #FFFFFF;
   border-radius: 0.625rem;
-  overflow: hidden;
 }
 
-.workflow-diagram-box img {
+.workflow-sticky-diagram img {
   width: 100%;
   height: auto;
   border-radius: 0.625rem;
   display: block;
 }
 
-/* Right Column: holds Old Text and New Diagram in identical 340px box */
+.workflow-sticky-diagram.old-diagram-sticky {
+  position: sticky;
+  top: calc(50vh - 10.625rem);
+}
+
+/* Right Column: Old text -> New text -> New Diagram sticky -> Hold space */
 .workflow-col-right {
   width: 100%;
   max-width: 35rem;
-  height: 21.25rem; /* 340px - matches diagram height */
   position: relative;
-  overflow: hidden;
-  border-radius: 0.625rem;
-  background: #FFFFFF;
 }
 
-.workflow-old-text-panel {
-  width: 100%;
-  height: 100%;
+.workflow-block {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 1.25rem;
-  position: absolute;
-  top: 0;
-  left: 0;
-  will-change: transform, opacity;
-  transition: transform 0.05s linear, opacity 0.05s linear;
+  gap: 1.5rem;
 }
 
-.workflow-old-text-panel p {
+.workflow-block p {
   font-size: 1.125rem; /* 18px */
   font-weight: 400;
   line-height: 1.7;
   color: var(--color-text-subtle);
 }
 
-.workflow-diagram-box.new-diagram-box {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  transform: translateY(100%);
-  will-change: transform;
-  transition: transform 0.05s linear;
-  background: #FFFFFF;
+.workflow-block.old-text-block {
+  margin-bottom: 8rem;
 }
 
-/* Bottom Level: New Workflow Text scrolling underneath both diagrams */
-.workflow-new-text-row {
-  width: 100%;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
+.workflow-block.new-text-block {
+  margin-bottom: 5rem;
 }
 
-.workflow-new-text-content {
-  max-width: 52.5rem; /* 840px */
-  width: 100%;
-  text-align: center;
-  transform: translateY(2rem);
-  opacity: 0;
-  will-change: transform, opacity;
-  transition: transform 0.05s linear, opacity 0.05s linear;
-  padding: 1.5rem 2rem;
-  background: #FAFAFB;
-  border-radius: 0.75rem;
-  border: 0.0625rem solid rgba(226, 232, 240, 0.8);
+.workflow-sticky-diagram.new-diagram-sticky {
+  position: sticky;
+  top: calc(50vh - 10.625rem);
 }
 
-.workflow-new-text-content p {
-  font-size: 1.1875rem; /* 19px */
-  font-weight: 400;
-  line-height: 1.65;
-  color: var(--color-text-dark);
+/* Scroll hold space: keep both diagrams side-by-side on screen for half of scroll */
+.workflow-hold-space {
+  height: 60vh;
 }
 
 /* --------------------------------------------------------------------------
@@ -1246,54 +1200,35 @@ button, input, textarea {
     gap: 2.5rem;
   }
 
-  .workflow-stage-track {
-    height: auto;
-  }
-
-  .workflow-stage-sticky {
-    position: static;
-    gap: 2rem;
-    padding-bottom: 0;
-  }
-
-  .workflow-stage-diagrams {
+  .workflow-layout {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 2.5rem;
   }
 
   .workflow-col-left,
   .workflow-col-right {
     max-width: 100%;
-    height: auto;
+    width: 100%;
+  }
+
+  .workflow-sticky-diagram.old-diagram-sticky,
+  .workflow-sticky-diagram.new-diagram-sticky {
     position: static;
-    overflow: visible;
+    top: auto;
   }
 
-  .workflow-old-text-panel {
-    position: static;
-    transform: none !important;
-    opacity: 1 !important;
-    margin-top: 1.25rem;
-    margin-bottom: 2rem;
+  .workflow-block.old-text-block {
+    margin-top: 1.5rem;
+    margin-bottom: 2.5rem;
   }
 
-  .workflow-diagram-box.new-diagram-box {
-    position: static;
-    transform: none !important;
-    opacity: 1 !important;
+  .workflow-block.new-text-block {
+    margin-bottom: 1.5rem;
   }
 
-  .workflow-new-text-row {
-    margin-top: 1.25rem;
-  }
-
-  .workflow-new-text-content {
-    transform: none !important;
-    opacity: 1 !important;
-    text-align: left;
-    max-width: 100%;
-    padding: 1.25rem 1.5rem;
+  .workflow-hold-space {
+    display: none;
   }
 
   .knowledge-title {
@@ -1301,8 +1236,7 @@ button, input, textarea {
   }
   
   .hero-bg-accent {
-    padding: 1.5rem 1.5rem 0 1.5rem;
-    height: 26rem;
+    width: 100%;
   }
 }
 
@@ -1350,9 +1284,29 @@ button, input, textarea {
     font-size: 1.25rem;
   }
   
+  .hero-scroll-track {
+    height: auto;
+  }
+
+  .hero-sticky-stage {
+    position: static;
+    height: auto;
+    overflow: visible;
+  }
+
   .hero-bg-accent {
-    padding: 1rem 1rem 0 1rem;
-    height: 20rem;
-    border-radius: 0.75rem 0.75rem 0 0;
+    width: 100%;
+    height: auto;
+    padding: 1.5rem 1rem 0;
+    border-radius: 1rem 1rem 0 0;
+  }
+
+  .hero-screenshot-viewport {
+    position: relative;
+    top: 0;
+    left: 0;
+    transform: none;
+    width: 100%;
+    max-height: none;
   }
 }
