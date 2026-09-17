@@ -807,6 +807,23 @@ button, input, textarea {
   color: var(--color-text-dark);
 }
 
+.knowledge-word {
+  color: var(--color-text-muted);
+  transition: color 0.18s ease-out;
+  display: inline;
+}
+
+.knowledge-word.is-active {
+  color: var(--color-text-dark);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .knowledge-word {
+    color: var(--color-text-dark);
+    transition: none;
+  }
+}
+
 /* --------------------------------------------------------------------------
    10. Section Proof
    - proof-img: прибрано фон, тільки тінь

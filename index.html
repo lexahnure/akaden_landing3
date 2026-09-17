@@ -507,6 +507,63 @@
       onHeroScroll();
     })();
 
+    // Section Knowledge: покрокове фарбування тексту по слову при скролі
+    (function () {
+      const textEl = document.querySelector('.knowledge-text');
+      if (!textEl) return;
+
+      // Розбиваємо текст на окремі слова у <span>
+      const text = textEl.textContent.trim();
+      const words = text.split(/\s+/);
+      textEl.innerHTML = words.map(w => `<span class="knowledge-word">${w}</span>`).join(' ');
+
+      const wordSpans = textEl.querySelectorAll('.knowledge-word');
+      const totalWords = wordSpans.length;
+      let isTicking = false;
+      let lastActiveCount = -1;
+
+      function updateKnowledgeScroll() {
+        const rect = textEl.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+
+        // Початок фарбування: коли верх тексту заходить на ~82% висоти в'юпорта
+        // Кінець фарбування: коли верх тексту піднімається до ~22% висоти в'юпорта
+        const startY = windowHeight * 0.82;
+        const endY = windowHeight * 0.22;
+
+        const progress = (startY - rect.top) / (startY - endY);
+        const clampedProgress = Math.min(Math.max(progress, 0), 1);
+        const activeCount = Math.round(clampedProgress * totalWords);
+
+        if (activeCount !== lastActiveCount) {
+          for (let i = 0; i < totalWords; i++) {
+            if (i < activeCount) {
+              wordSpans[i].classList.add('is-active');
+            } else {
+              wordSpans[i].classList.remove('is-active');
+            }
+          }
+          lastActiveCount = activeCount;
+        }
+
+        isTicking = false;
+      }
+
+      function onScroll() {
+        if (!isTicking) {
+          window.requestAnimationFrame(updateKnowledgeScroll);
+          isTicking = true;
+        }
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', () => {
+        lastActiveCount = -1;
+        onScroll();
+      }, { passive: true });
+      updateKnowledgeScroll();
+    })();
+
     // Q&A Accordion interactive icon toggling (+ / -)
     document.querySelectorAll('.qa-item').forEach(item => {
       item.addEventListener('toggle', () => {
