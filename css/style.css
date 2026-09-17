@@ -252,7 +252,7 @@ button, input, textarea {
 
 .hero-sticky-window {
   position: sticky;
-  top: 5.5rem; /* Sits cleanly below the sticky navigation */
+  top: 5.5rem; /* Sits cleanly below sticky navigation */
   width: 100%;
   display: flex;
   justify-content: center;
@@ -462,8 +462,9 @@ button, input, textarea {
 
 /* --------------------------------------------------------------------------
    6. Section Workflow
-   - workflow-rows далі один від одного
-   - old workflow стікі, і до нього підскролюється новий воркфлоу
+   - текст олд воркфлоу проскролюється
+   - схема олд воркфлоу лишається стікі, поки друга схема не проскролиться
+   - підписи олд і нью воркфлоу прибрано з тексту (є на самих схемах)
    -------------------------------------------------------------------------- */
 .workflow-section {
   background: #FFFFFF;
@@ -484,70 +485,76 @@ button, input, textarea {
   margin-bottom: 3.5rem;
 }
 
-.workflow-rows {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 12rem; /* Increased distance between workflow rows */
-}
-
-/* Sticky Old Workflow Row */
-.workflow-row.old-workflow-row {
-  position: sticky;
-  top: 5.5rem; /* Sits cleanly below sticky navigation */
-  z-index: 10;
-  background: #FFFFFF;
-  padding-bottom: 1.5rem;
-}
-
-/* New Workflow Row scrolls up over/to it */
-.workflow-row.new-workflow-row {
-  position: relative;
-  z-index: 20;
-  background: #FFFFFF;
-  padding-top: 2rem;
-}
-
-.workflow-row {
+.workflow-split {
   display: grid;
   grid-template-columns: 35rem 35rem; /* 560px 560px */
   gap: 2.5rem;
   justify-content: space-between;
-  align-items: center;
+  align-items: stretch;
 }
 
-.workflow-text {
+/* Left Column: text blocks */
+.workflow-text-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.workflow-text-block {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
 
-.workflow-badge {
-  display: inline-block;
-  font-size: 0.875rem;
-  font-weight: 700;
-  line-height: 1.7;
-}
-
-.workflow-badge.old {
-  color: var(--color-text-subtle);
-}
-
-.workflow-badge.new {
-  color: var(--color-brand-blue);
-}
-
-.workflow-text p {
+.workflow-text-block p {
   font-size: 1.125rem; /* 18px */
   font-weight: 400;
   line-height: 1.7;
   color: var(--color-text-subtle);
 }
 
-.workflow-diagram img {
+.workflow-text-block.old-text-block {
+  margin-bottom: 24rem; /* Provides scroll room for text while old diagram is sticky */
+}
+
+.workflow-text-block.new-text-block {
+  padding-bottom: 16rem;
+}
+
+/* Right Column: sticky diagrams */
+.workflow-diagram-col {
+  position: relative;
+  height: 100%;
+  padding-bottom: 16rem;
+}
+
+.workflow-diagram-item {
+  width: 100%;
+  max-width: 35rem; /* 560px */
+  background: #FFFFFF;
+  border-radius: 0.625rem;
+}
+
+.workflow-diagram-item img {
   width: 100%;
   height: auto;
   border-radius: 0.625rem;
+  display: block;
+}
+
+/* Old Diagram stays sticky until new diagram scrolls up to replace it */
+.workflow-diagram-item.old-diagram-item {
+  position: sticky;
+  top: 6rem;
+  z-index: 1;
+}
+
+/* New Diagram scrolls up and sticks right over old diagram */
+.workflow-diagram-item.new-diagram-item {
+  position: sticky;
+  top: 6rem;
+  z-index: 2;
+  margin-top: 24rem; /* Matches the vertical offset of the new text block */
+  box-shadow: 0 -0.5rem 1.5rem rgba(0, 0, 0, 0.04);
 }
 
 /* --------------------------------------------------------------------------
@@ -1180,7 +1187,6 @@ button, input, textarea {
 
 @media (max-width: 64rem) { /* 1024px */
   .story-cols,
-  .workflow-row,
   .usecases-container,
   .proof-container,
   .cta-container {
@@ -1188,12 +1194,39 @@ button, input, textarea {
     gap: 2.5rem;
   }
 
-  .workflow-row.old-workflow-row {
-    position: static;
+  .workflow-split {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
   }
 
-  .workflow-rows {
-    gap: 4rem;
+  .workflow-text-col,
+  .workflow-diagram-col {
+    display: contents;
+  }
+
+  .workflow-text-block.old-text-block {
+    order: 1;
+    margin-bottom: 0;
+  }
+
+  .workflow-diagram-item.old-diagram-item {
+    order: 2;
+    position: static;
+    margin-top: 0;
+    margin-bottom: 2rem;
+  }
+
+  .workflow-text-block.new-text-block {
+    order: 3;
+    padding-bottom: 0;
+  }
+
+  .workflow-diagram-item.new-diagram-item {
+    order: 4;
+    position: static;
+    margin-top: 0;
+    box-shadow: none;
   }
 
   .knowledge-title {

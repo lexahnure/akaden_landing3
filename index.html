@@ -124,27 +124,25 @@
     <section class="workflow-section" id="workflow">
       <div class="workflow-container">
         <h2 class="workflow-title">Meanwhile, software engineering changed</h2>
-        <div class="workflow-rows">
-          <!-- Row 1: Old Workflow (Sticky) -->
-          <div class="workflow-row old-workflow-row">
-            <div class="workflow-text">
-              <span class="workflow-badge old">Old Workflow</span>
+        <div class="workflow-split">
+          <!-- Left Column: Text blocks (Old workflow text scrolls, then New workflow text scrolls) -->
+          <div class="workflow-text-col">
+            <div class="workflow-text-block old-text-block">
               <p>AI started as autocomplete. Then chat. Then code generation. Now agents can participate in the engineering process itself — analyzing code, reasoning across artifacts, generating implementations, executing tests, and iterating on the results.</p>
               <p>In the traditional model, the integration engineer is wired directly into every part of the institution's ecosystem — Banner or Colleague, the data warehouse, the LMS, legacy applications, and whatever comes next. The engineer carries the context and manually moves the work from one system and one step to another.</p>
             </div>
-            <div class="workflow-diagram">
-              <img src="assets/old-workflow.svg" alt="Old Workflow Architecture Diagram" width="560" height="340" loading="lazy">
+            <div class="workflow-text-block new-text-block">
+              <p>Akaden introduces a new layer between the engineer and those systems: specialized AI agents that analyze, design, build, test, and carry project context across the workflow. The systems stay the same. The steps stay the same — prepare, specify, build, test, deploy, validate. What changes is who executes them, and how much the engineer has to hold in their head to do it.</p>
             </div>
           </div>
 
-          <!-- Row 2: New Workflow (Scrolls up toward the old workflow) -->
-          <div class="workflow-row new-workflow-row">
-            <div class="workflow-text">
-              <span class="workflow-badge new">New Workflow</span>
-              <p>Akaden introduces a new layer between the engineer and those systems: specialized AI agents that analyze, design, build, test, and carry project context across the workflow. The systems stay the same. The steps stay the same — prepare, specify, build, test, deploy, validate. What changes is who executes them, and how much the engineer has to hold in their head to do it.</p>
+          <!-- Right Column: Sticky Diagrams (Old diagram stays sticky until New diagram scrolls up to replace it) -->
+          <div class="workflow-diagram-col">
+            <div class="workflow-diagram-item old-diagram-item">
+              <img src="assets/old-workflow.png" alt="Old Workflow Architecture Diagram" width="560" height="340" loading="lazy">
             </div>
-            <div class="workflow-diagram">
-              <img src="assets/new-workflow.svg" alt="New Workflow Architecture Diagram" width="560" height="340" loading="lazy">
+            <div class="workflow-diagram-item new-diagram-item">
+              <img src="assets/new-workflow.png" alt="New Workflow Architecture Diagram" width="560" height="340" loading="lazy">
             </div>
           </div>
         </div>
@@ -415,12 +413,13 @@
         if (!isTicking) {
           window.requestAnimationFrame(() => {
             const trackRect = track.getBoundingClientRect();
-            const windowHeight = window.innerHeight;
-            const scrollDistance = track.offsetHeight - windowHeight;
+            const stickyWindow = track.querySelector('.hero-sticky-window');
+            const topOffset = stickyWindow ? parseFloat(window.getComputedStyle(stickyWindow).top) || 88 : 88;
+            const pinnedDistance = track.offsetHeight - (stickyWindow ? stickyWindow.offsetHeight : window.innerHeight);
 
-            if (scrollDistance > 0) {
-              const currentScroll = -trackRect.top;
-              const progress = Math.min(Math.max(currentScroll / scrollDistance, 0), 1);
+            if (pinnedDistance > 0) {
+              const currentScroll = topOffset - trackRect.top;
+              const progress = Math.min(Math.max(currentScroll / pinnedDistance, 0), 1);
               const maxTranslate = Math.max(0, screenshot.offsetHeight - viewport.offsetHeight);
               const translateY = -progress * maxTranslate;
               screenshot.style.transform = `translateY(${translateY}px)`;
