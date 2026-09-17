@@ -1,422 +1,455 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Akaden — AI-native integration engineering</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
-<!-- Stylesheet -->
-<link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Akaden — AI-native integration engineering for higher education</title>
+  <!-- Google Fonts: Geist & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<header class="site-header">
-  <nav class="site-nav" aria-label="Main navigation">
-    <div class="nav-inner">
-      <a href="#top" class="nav-brand" aria-label="Akaden Home">
-        <img src="assets/akaden-logo.svg" alt="AKADEN" class="nav-brand-logo" width="140" height="24">
-      </a>
-      <ul class="nav-links">
-        <li><a href="#story">Why Akaden</a></li>
-        <li><a href="#usecases">Use Cases</a></li>
-        <li><a href="#testimonials">Testimonials</a></li>
-        <li><a href="#qa">Q&amp;A</a></li>
-      </ul>
-      <a href="https://calendly.com/akaden-demo/intro" target="_blank" rel="noopener noreferrer" class="btn btn-sm nav-cta">Book a Demo</a>
-    </div>
-  </nav>
-</header>
-
-<main id="main-content">
-  <section class="hero" id="top">
-      <div class="wrap">
-        <!-- <div class="hero-logo-wrap">
-          <img src="assets/akaden-logo-white.svg" alt="AKADEN" class="hero-logo" width="252" height="43">
-        </div> -->
-        <!-- <p class="hero-eyebrow">AI-native integration engineering for higher education</p>  -->
-        <h1>Build and modernize Banner and Colleague integrations with AI agents — not from scratch.</h1>
-        
-        <div class="hero-cta-row">
-          <a href="https://calendly.com/akaden-demo/intro" target="_blank" rel="noopener noreferrer" class="btn-invert">Book a Demo</a>
-          <a href="#story" class="hero-link">Read the story ↓</a>
-        </div>
+  <!-- Site Navigation -->
+  <header class="site-header">
+    <nav class="site-nav" aria-label="Main navigation">
+      <div class="nav-inner">
+        <a href="#top" class="nav-brand" aria-label="Akaden Home">
+          <img src="assets/akaden-logo-figma.svg" alt="AKADEN" class="nav-brand-logo" width="145" height="32">
+        </a>
+        <ul class="nav-links">
+          <li><a href="#story">Why Akaden</a></li>
+          <li><a href="#usecases">Use Cases</a></li>
+          <li><a href="#cta">Testimonials</a></li>
+          <li><a href="#qa">Q&amp;A</a></li>
+        </ul>
+        <a href="https://calendly.com/akaden-demo/intro" target="_blank" rel="noopener noreferrer" class="btn btn-sm">Book a Demo</a>
       </div>
-    </div>
-    <div class="hero-postcta">
-      <div class="postcta-inner">
-        <p class="hero-sub">Akaden is an AI-native engineering platform for higher-ed teams building, modernizing, and maintaining integrations across <strong>Banner, Colleague, Ethos APIs, and Ellucian Data Connect</strong> — from understanding legacy integrations and designing the target solution to implementation, testing, deployment, and maintenance.</p>
-        <!-- <p class="hero-note"><strong>Built for the higher-ed integration stack:</strong> Banner · Colleague · Ethos APIs · Ellucian Data Connect · SIS · LMS · data warehouse · institutional systems.</p> -->
-      </div>
-    </div>
-  </section>
+    </nav>
+  </header>
 
-  <section class="alt" id="story">
-    <div class="wrap card">
-    
-      <div class="narrow center">
-        <span class="section-eyebrow">The problem</span>
-        <h2>Banner and Colleague integrations are hard to build and maintain.</h2>
-    
-        <p>Every Banner or Colleague integration becomes its own engineering project — whether it connects the SIS to an LMS, data warehouse, finance system, identity platform, CRM, or a new SaaS application.</p>
-        <p>Someone has to read the old PL/SQL, UniBasic, scripts, mappings, or existing Data Connect pipelines. Trace the data flow. Find the Banner or Colleague tables and Ethos APIs. Reconstruct the business rules. Figure out what the current integration is really doing.</p>
-        <p>Then someone has to write the specification, map institutional data, build the implementation, create the tests, debug failures, deploy it, and keep it working as the institution moves more of its ecosystem to SaaS.</p>
-      </div>
-      <ol class="sequence">
-          <li><span class="n">01</span><span>Understand the existing system.</span></li>
-          <li><span class="n">02</span><span>Design what should replace it.</span></li>
-          <li><span class="n">03</span><span>Build the new integration.</span></li>
-          <li><span class="n">04</span><span>Test and prove that it works.</span></li>
-          <li><span class="n">05</span><span>Deploy it and live with it for years.</span></li>
-        </ol>
-      <div class="narrow center">
-        
-        <blockquote class="pull col-span-2">The problem is not only the amount of manual work. It is how much engineering knowledge gets created — and then lost.</blockquote>
-        <div>
-          
+  <main id="main-content">
 
-          <p>Requirements live in one place. Mappings in another. Decisions are buried in meetings and tickets. Tests are separated from the reasoning behind them. The implementation ends up in a repository that explains what the code does, but not necessarily why.</p>
-          <p>And often, the most important part of the system still lives in the heads of the engineers who built it.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="dark">
-    <div class="wrap"> 
-      <div class="narrow center">
-        <span class="section-eyebrow on-dark">The inflection point</span>
-        <h2>Meanwhile, software engineering changed.</h2>
-        <p>AI started as autocomplete. Then chat. Then code generation.</p>
-        <p>Now agents can participate in the engineering process itself: analyzing code, reasoning across artifacts, generating implementations, executing tests, inspecting failures, and iterating.</p>
-        <blockquote class="pull">Engineers no longer have to perform every mechanical step themselves.</blockquote>
-        <p>They can increasingly direct the engineering process instead.</p>
-        <p><strong>Higher-ed integration engineering should work the same way — including the Banner and Colleague ecosystems institutions are modernizing right now.</strong></p>
-      </div>
-    </div>
-  </section>
-
-  <section class="alt" id="shift">
-    <div class="wrap ">
-      <h2 class="bridge-title center">Akaden changes <span class="grad-text">who does the work.</span></h2>
-      <div class="grid-2 half">
-        <div class="bridge-copy center">
-          <p>In the traditional model, the integration engineer is wired directly into every part of the institution's ecosystem — Banner or Colleague, the data warehouse, LMS, student systems, pipelines, legacy applications, and whatever comes next.</p>
-          <p>The engineer carries the context and manually moves the work from one system and one SDLC step to another.</p>
-        </div>
-        <div class="bridge-copy center">
-          <p>Akaden introduces a new layer between the engineer and those systems: specialized AI agents that can analyze, design, build, test, and carry project context across the workflow.</p>
-        </div>
-          <div class="shift-img-wrap">
-            <span>Old Workflow</span>
-            <img src="assets/old-workflow.webp" alt="old workflow diagram" width="100%" height="auto" loading="lazy">
+    <!-- Section Top / Hero -->
+    <section class="hero-section" id="top">
+      <div class="hero-inner-frame">
+        <div class="hero-bg-accent"></div>
+        <div class="hero-content-wrap">
+          <h1 class="hero-title">Build and modernize Banner and Colleague integrations with AI agents — not from scratch</h1>
+          <div class="hero-cta-row">
+            <a href="https://calendly.com/akaden-demo/intro" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Book a Demo</a>
+            <a href="#story" class="btn btn-secondary">Read the story ↓</a>
           </div>
-          <div class="shift-img-wrap">
-            <span>New Workflow</span>
-            <img src="assets/new-workflow.webp" alt="new workflow diagram" width="100%" height="auto" loading="lazy">
+        </div>
+        <div class="hero-image-wrap">
+          <img src="assets/akaden-project-home.png" alt="Akaden Project Home Screenshot" class="hero-screenshot" width="960" height="604" loading="eager">
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Story -->
+    <section class="story-section" id="story">
+      <div class="story-header">
+        <h2>Banner and Colleague integrations are hard to build and maintain</h2>
+      </div>
+
+      <div class="story-card-wrap">
+        <div class="story-cols">
+          <div class="story-text-col">
+            <p>Every Banner or Colleague integration becomes its own engineering project — whether it connects the SIS to an LMS, data warehouse, finance system, identity platform, CRM, or a new SaaS application.</p>
+            <blockquote class="pull-callout">The problem is not only the amount of manual work. It is how much engineering knowledge gets created — and then lost.</blockquote>
+            <p>Requirements live in one place. Mappings in another. Decisions are buried in meetings and tickets. Tests are separated from the reasoning behind them. The implementation ends up in a repository that explains what the code does, but not necessarily why.</p>
+            <p>And often, the most important part of the system still lives in the heads of the engineers who built it. We started where we know the terrain. Banner. Colleague. Ethos. Ellucian Data Connect.</p>
           </div>
-      </div>
-      <blockquote class="pull">The systems are still the same. The engineering responsibility is still human. What changes is how the work gets executed.</blockquote>
-    </div>
-  </section>
 
-  <section class="alt">
-    <div class="wrap card">
-      <div class="narrow">
-        <h2>The SDLC doesn't disappear. <br> The engineer moves up a level.</h2>
-      </div>
-      <div class="grid-2 half">
-        <div>
-        <p>You still need to understand the Banner or Colleague integration. You still need a target design. You still need mappings, an implementation, tests, deployment, and long-term maintenance.</p>
-        <p><strong>What changes is the engineer's position in the process.</strong></p>
-        <p>Instead of manually executing every step, the engineer sets the goal, reviews the work, makes decisions, and approves the result.</p>
-        <p>Akaden coordinates the engineering work underneath: analyzing existing Banner/Colleague logic, reasoning over Ethos APIs and Data Connect artifacts, producing the target design and mappings, building the implementation, testing it, and carrying the resulting knowledge forward.</p>
-        </div>
-        <blockquote class="pull">Akaden does not replace the SDLC. It changes the operating model for executing it.</blockquote>
-        
-      </div>
-    </div>
-  </section>
-  <section class="tight alt">
-    <div class="wrap">
-      <aside class="mid-cta col-span-2">
-          <span>See what this operating model looks like on a real integration.</span>
-          <a class="btn btn-sm" href="https://calendly.com/akaden-demo/intro" target="_blank" rel="noopener noreferrer">Book a Demo</a>
-        </aside>
-    </div>
-  </section>
-  <section class="alt" id="usecases">
-    <div class="wrap">
-      <div class="narrow no-pb">
-        <span class="section-eyebrow">What that means in practice</span>
-        <h2>Three kinds of higher-ed integration work. One engineering model.</h2>
-      </div>
-      <div class="grid-3">
-        <article class="card usecase-card">
-          <h3>Build something new.</h3>
-          <p>Start with a Banner or Colleague requirement and the campus systems you need to connect — LMS, warehouse, CRM, finance, identity, or another SaaS platform. Akaden carries context through the workflow, helping move from design to implementation to tests and deployment without restarting at every stage.</p>
-          <span class="flow-tag">Requirements <b>→</b> Design <b>→</b> Mappings <b>→</b> Implementation <b>→</b> Tests <b>→</b> Deployment</span>
-        </article>
-        <article class="card usecase-card">
-          <h3>Modernize something old.</h3>
-          <p>Start with the implementation you already have — PL/SQL, UniBasic, scripts, point-to-point code, or an existing pipeline. Akaden helps reconstruct the business logic, define the SaaS-ready target using Ethos or Data Connect where appropriate, generate the new implementation, and validate it against the original behavior.</p>
-          <span class="flow-tag">Legacy implementation <b>→</b> Understanding <b>→</b> Target design <b>→</b> New implementation <b>→</b> Validation</span>
-        </article>
-        <article class="card usecase-card">
-          <h3>Take over something inherited.</h3>
-          <p>Start with an integration that works but is poorly understood. Akaden can help reverse-engineer the implementation, capture its logic and dependencies, establish tests, and create a foundation for ongoing maintenance.</p>
-          <span class="flow-tag">Existing integration <b>→</b> Reverse engineering <b>→</b> Knowledge base <b>→</b> Tests <b>→</b> Maintenance</span>
-        </article>
-      </div>
-      <!-- <aside class="mid-cta">
-        <span>Have one of these problems today? Bring it to the demo.</span>
-        <a class="btn btn-sm" href="https://calendly.com/akaden-demo/intro" target="_blank" rel="noopener noreferrer">Book a Demo</a>
-      </aside> -->
-    </div>
-  </section>
-
-  <section class="alt" id="why">
-    <div class="wrap card-wrap">
-      <div class="narrow no-pb">
-        <span class="section-eyebrow">Why Akaden is different</span>
-        <h2>Akaden doesn't start from a blank prompt.</h2>
-        <p>Generic coding agents understand software. Akaden is being built around the integration technologies, data models, and modernization patterns higher-ed institutions actually use.</p>
-      </div>
-      
-      <div class="formula">
-        <article class="card formula-part">
-          <h3>Higher-ed domain knowledge</h3>
-          <p>Banner, Colleague, Ethos APIs, Ellucian Data Connect, institutional data models, integration patterns, legacy technologies, and SaaS target architectures.</p>
-        </article>
-        <div class="formula-op">+</div>
-        <article class="card formula-part">
-          <h3>Engineering agents</h3>
-          <p>Analysis, design, implementation, testing, deployment, and maintenance.</p>
-        </article>
-        <div class="formula-op">+</div>
-        <article class="card formula-part">
-          <h3>Persistent project context</h3>
-          <p>Requirements, mappings, source code, generated artifacts, tests, decisions, and execution history.</p>
-        </article>
-      </div>
-      <div class="formula-op center">=</div>
-      <div class=" no-pt">
-        <blockquote class="pull">The result is not a chatbot sitting beside the engineer. It is an engineering environment built around agents.</blockquote>
-      </div>
-    </div>
-  </section>
-
-  <section class="alt">
-    <div class="wrap">
-      <div class="narrow ">
-          <span class="section-eyebrow">Persistent knowledge</span>
-          <h2>The work becomes the knowledge.</h2>
-          <p>Akaden does not treat every AI interaction as an isolated conversation.</p>
-          <p>What the analysis uncovers becomes context for design. What design decides becomes context for implementation. What gets built becomes input to testing. Test results become part of the project history.</p>
-          <p>The engineering decisions stay with the project.</p>
-          <blockquote class="pull">The output is not just code. It is the integration — together with the knowledge required to understand, validate, and maintain it.</blockquote>
-        
-        
-      </div>
-    </div>
-  </section>
-
-  <section id="testimonials">
-    <div class="wrap">
-      <div class="grid-2 ">
-        <div class="">
-          <span class="section-eyebrow">What users are saying</span>
-          <h2>Early reactions from people doing the work.</h2>
-          <p>ABCloudz's professional services team uses Akaden daily across multiple customer engagements — building, maintaining, monitoring, and debugging Ellucian Student integrations, and feeding real field feedback back into the product.</p>
-        </div>
-        <figure class="quote-feature">
-        <blockquote class="qtext">Akaden gives integration engineers a single place to analyze requirements, generate pipelines, test APIs, and troubleshoot issues — letting us focus on solving business problems instead of managing tools.</blockquote>
-        <figcaption class="attr">— Data Integration Engineer</figcaption>
-      </figure>
-      </div>
-    </div>
-  </section>
-  <section class="tight">
-    <div class="wrap">
-      <aside class="mid-cta">
-        <span>The easiest way to understand Akaden is to see it work.</span>
-        <a class="btn btn-sm" href="https://calendly.com/akaden-demo/intro" target="_blank" rel="noopener noreferrer">Book a Demo</a>
-      </aside>
-    </div>
-  </section>
-
-  <section class="dark" id="proof">
-    <div class="wrap"> 
-      <div class="narrow center">
-        <span class="section-eyebrow on-dark">Built from real integration work</span>
-        <h2>Akaden started with real higher-ed modernization work.</h2>
-        <p>As we introduced agentic AI into real Banner, Colleague, and higher-ed integration modernization projects, the interesting question was not simply whether AI could write code.</p>
-        <blockquote class="pull">How much of the engineering process can agents perform if they have the right tools, domain knowledge, project context, and human supervision?</blockquote>
-        <p>Akaden is the engineering environment we are building around that answer.</p>
-        <div class="proof-box">
-          <p><strong>We are starting where we have deep domain experience:</strong></p>
-          <p>Banner. Colleague. Ethos. Ellucian Data Connect.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="alt" id="qa">
-    <div class="wrap">
-      <div class="grid-2">
-        <h2>Questions people usually ask.</h2>
-        <div class="qa-list">
-          <details class="qa-item">
-            <summary>Is Akaden an AI coding assistant?</summary>
-            <p>No. Coding is one part of the workflow, but Akaden is designed around the broader integration engineering lifecycle: understanding existing systems, design, implementation, testing, deployment, and maintenance.</p>
-          </details>
-          <details class="qa-item">
-            <summary>Does Akaden replace integration engineers?</summary>
-            <p>No. Akaden is designed to change where engineers spend their time. Agents take on more of the mechanical work, while engineers remain responsible for goals, architecture, review, decisions, and approval.</p>
-          </details>
-          <details class="qa-item">
-            <summary>What kinds of integrations can Akaden work with?</summary>
-            <p>Akaden is focused today on the Ellucian higher-ed ecosystem: Banner, Colleague, Ethos APIs, and Ellucian Data Connect, including both new integration development and modernization of existing integrations.</p>
-          </details>
-          <details class="qa-item">
-            <summary>Can Akaden understand an integration we already have?</summary>
-            <p>That is one of its core use cases. Existing code, pipelines, mappings, specifications, and related artifacts can become inputs to the analysis and modernization workflow.</p>
-          </details>
-          <details class="qa-item">
-            <summary>Do we have to move everything to Akaden at once?</summary>
-            <p>No. A practical starting point is a single integration or modernization problem. That makes it possible to evaluate the workflow on real engineering work before expanding its use.</p>
-          </details>
-          <details class="qa-item">
-            <summary>How is this different from using a general-purpose coding agent?</summary>
-            <p>Akaden combines agents with integration-specific domain knowledge and persistent project context. The goal is not a better prompt. It is a repeatable engineering workflow where the artifacts and knowledge created in one stage carry into the next.</p>
-          </details>
-          <details class="qa-item">
-            <summary>What happens in a demo?</summary>
-            <p>Bring us an integration problem — something you need to build, modernize, understand, or maintain. We'll use that context to show how Akaden approaches the engineering workflow.</p>
-          </details>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="cta-band no-border">
-    <div class="wrap">
-        <div class=" grid-2">
-          <!-- <span class="hero-eyebrow">See it on real work</span> -->
-           <div>
-            <h2>Bring us an integration.</h2>
-            <p>A legacy Banner PL/SQL integration. A Colleague UniBasic program that needs to move to SaaS. A Data Connect pipeline you need to build. An Ethos integration sitting in the backlog. Or the campus integration nobody wants to touch because the person who built it is gone.</p>
-            <p><strong>We'll show you what the engineering process looks like with Akaden.</strong></p>
+          <div class="story-sequence-col">
+            <div class="sdlc-header">Classic SDLC</div>
+            <div class="sdlc-card">
+              <div class="sdlc-step">
+                <div class="sdlc-step-title">Understand</div>
+                <div class="sdlc-step-desc">the existing system (PL/SQL, UniBasic, Ethos)</div>
+              </div>
+              <div class="sdlc-step">
+                <div class="sdlc-step-title">Design</div>
+                <div class="sdlc-step-desc">the target implementation (Data Connect mapping)</div>
+              </div>
+              <div class="sdlc-step">
+                <div class="sdlc-step-title">Build</div>
+                <div class="sdlc-step-desc">the new integration (pipeline + tests)</div>
+              </div>
+              <div class="sdlc-step">
+                <div class="sdlc-step-title">Test</div>
+                <div class="sdlc-step-desc">and prove that it works (against acceptance criteria)</div>
+              </div>
+              <div class="sdlc-step">
+                <div class="sdlc-step-title">Deploy</div>
+                <div class="sdlc-step-desc">and live with it for years (publish to tenant)</div>
+              </div>
+            </div>
+            <div class="sdlc-pointer"></div>
+            <div class="sdlc-repeat">
+              <img src="assets/icon-repeat.svg" alt="" width="24" height="24">
+              <span>Repeat for every integration</span>
+            </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Workflow -->
+    <section class="workflow-section" id="workflow">
+      <div class="workflow-container">
+        <h2 class="workflow-title">Meanwhile, software engineering changed</h2>
+        <div class="workflow-rows">
+          <!-- Row 1: Old Workflow -->
+          <div class="workflow-row">
+            <div class="workflow-text">
+              <span class="workflow-badge old">Old Workflow</span>
+              <p>AI started as autocomplete. Then chat. Then code generation. Now agents can participate in the engineering process itself — analyzing code, reasoning across artifacts, generating implementations, executing tests, and iterating on the results.</p>
+              <p>In the traditional model, the integration engineer is wired directly into every part of the institution's ecosystem — Banner or Colleague, the data warehouse, the LMS, legacy applications, and whatever comes next. The engineer carries the context and manually moves the work from one system and one step to another.</p>
+            </div>
+            <div class="workflow-diagram">
+              <img src="assets/old-workflow.svg" alt="Old Workflow Architecture Diagram" width="560" height="340" loading="lazy">
+            </div>
+          </div>
+
+          <!-- Row 2: New Workflow -->
+          <div class="workflow-row">
+            <div class="workflow-text">
+              <span class="workflow-badge new">New Workflow</span>
+              <p>Akaden introduces a new layer between the engineer and those systems: specialized AI agents that analyze, design, build, test, and carry project context across the workflow. The systems stay the same. The steps stay the same — prepare, specify, build, test, deploy, validate. What changes is who executes them, and how much the engineer has to hold in their head to do it.</p>
+            </div>
+            <div class="workflow-diagram">
+              <img src="assets/new-workflow.svg" alt="New Workflow Architecture Diagram" width="560" height="340" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Usecases -->
+    <section class="usecases-section" id="usecases">
+      <div class="usecases-container">
+        <div class="usecases-left">
+          <h2>Different kinds of higher-ed scenarios, one engineering model</h2>
+        </div>
+        <div class="usecases-right">
+          <article class="usecase-card">
+            <div class="usecase-icon-box">
+              <img src="assets/icon-badge-plus.svg" alt="" width="40" height="40">
+            </div>
+            <div class="usecase-body">
+              <h3>Sync student contact records to a new SaaS platform</h3>
+              <div class="usecase-flow">Requirements → Design → Mappings → Implementation → Tests → Deployment</div>
+            </div>
+          </article>
+
+          <article class="usecase-card">
+            <div class="usecase-icon-box">
+              <img src="assets/icon-refresh.svg" alt="" width="40" height="40">
+            </div>
+            <div class="usecase-body">
+              <h3>Move a legacy Banner extract to Ethos</h3>
+              <div class="usecase-flow">Legacy implementation → Understanding → Target design → New implementation → Validation</div>
+            </div>
+          </article>
+
+          <article class="usecase-card">
+            <div class="usecase-icon-box">
+              <img src="assets/icon-pickaxe.svg" alt="" width="40" height="40">
+            </div>
+            <div class="usecase-body">
+              <h3>An integration the last person never documented</h3>
+              <div class="usecase-flow">Existing integration → Reverse engineering → Knowledge base → Tests → Maintenance</div>
+            </div>
+          </article>
+
+          <aside class="usecase-cta-banner">
+            <h3>Your own scenario to build, modernize, or take over</h3>
+            <a href="https://calendly.com/akaden-demo/intro" target="_blank" rel="noopener noreferrer" class="btn btn-sm">Book a Demo</a>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Why -->
+    <section class="why-section" id="why">
+      <div class="why-container">
+        <div class="why-header">
+          <h2>Akaden doesn't start from a blank prompt</h2>
+          <p class="why-sub">Generic coding agents understand software. Akaden is being built around the integration technologies, data models, and modernization patterns higher-ed institutions actually use.</p>
+        </div>
+
+        <div class="formula-row">
+          <article class="formula-card">
+            <div class="formula-img-wrap">
+              <img src="assets/why-domain-knowledge.png" alt="Higher-ed domain knowledge" loading="lazy">
+            </div>
+            <h3>Higher-ed domain knowledge</h3>
+            <p>Banner, Colleague, Ethos APIs, Ellucian Data Connect, institutional data models, integration patterns, legacy technologies, and SaaS target architectures.</p>
+          </article>
+
+          <div class="formula-operator">+</div>
+
+          <article class="formula-card">
+            <div class="formula-img-wrap">
+              <img src="assets/why-engineering-agents.png" alt="Engineering agents" loading="lazy">
+            </div>
+            <h3>Engineering agents</h3>
+            <p>Analysis, design, implementation, testing, deployment, and maintenance.</p>
+          </article>
+
+          <div class="formula-operator">+</div>
+
+          <article class="formula-card">
+            <div class="formula-img-wrap">
+              <img src="assets/why-project-context.png" alt="Persistent project context" loading="lazy">
+            </div>
+            <h3>Persistent project context</h3>
+            <p>Requirements, mappings, source code, generated artifacts, tests, decisions, and execution history.</p>
+          </article>
+
+          <div class="formula-operator">=</div>
+
+          <div class="formula-result-card">
+            <p>The result is an engineering environment built around agents.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Knowledge -->
+    <section class="knowledge-section">
+      <div class="knowledge-container">
+        <h2 class="knowledge-title">The work becomes the knowledge</h2>
+        <p class="knowledge-text">Akaden doesn't treat AI interactions as isolated conversations. What the analysis uncovers becomes context for design, what design decides becomes context for implementation, and what gets built becomes input to testing — with every test result carried forward as project history. The result is the integration, together with the knowledge needed to understand, validate, and maintain it.</p>
+      </div>
+    </section>
+
+    <!-- Section Proof -->
+    <section class="proof-section" id="proof">
+      <div class="proof-container">
+        <div class="proof-images">
+          <img src="assets/proof-code-1.png" alt="Akaden implementation verification screenshot 1" class="proof-img" width="560" height="228" loading="lazy">
+          <img src="assets/proof-code-2.png" alt="Akaden implementation verification screenshot 2" class="proof-img" width="560" height="197" loading="lazy">
+        </div>
+        <div class="proof-text">
+          <h2>Akaden started with real higher-ed modernization work</h2>
+          <p>The real question wasn't code. As we introduced agentic AI into real Banner, Colleague, and higher-ed integration modernization projects, the real question wasn't whether AI could write code — it was how much of the engineering process it could take on, with the right tools, domain knowledge, project context, and human supervision.</p>
+          <p class="proof-highlight">Akaden is our answer. The engineering environment we're building around it.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section CTA Band -->
+    <section class="cta-section" id="cta">
+      <div class="cta-container">
+        <div class="cta-left">
+          <h2>Bring us an integration</h2>
+          <p>A legacy Banner PL/SQL integration. A Colleague UniBasic program that needs to move to SaaS. A Data Connect pipeline you need to build. An Ethos integration sitting in the backlog. Or the campus integration nobody wants to touch because the person who built it is gone.</p>
+          <p class="cta-bold-sub">We'll show you what the engineering process looks like with Akaden.</p>
+
+          <blockquote class="cta-quote-box">
+            <span class="quote-mark">“</span>
+            <p class="quote-text">Akaden gives integration engineers a single place to analyze requirements, generate pipelines, test APIs, and troubleshoot issues — letting us focus on solving business problems instead of managing tools.</p>
+            <footer class="quote-author">— Data Integration Engineer, ABCloudz</footer>
+          </blockquote>
+        </div>
+
+        <div class="cta-right">
           <form class="cta-form" action="#" method="POST">
             <div class="form-row">
               <div class="form-group">
-                <label for="first-name" class="form-label">First Name</label>
-                <input type="text" id="first-name" name="first_name" class="form-input" required autocomplete="given-name">
+                <label for="first-name">First Name</label>
+                <input type="text" id="first-name" name="first_name" required autocomplete="given-name">
               </div>
               <div class="form-group">
-                <label for="last-name" class="form-label">Last Name</label>
-                <input type="text" id="last-name" name="last_name" class="form-input" required autocomplete="family-name">
+                <label for="last-name">Last Name</label>
+                <input type="text" id="last-name" name="last_name" required autocomplete="family-name">
               </div>
             </div>
             <div class="form-group">
-              <label for="company-email" class="form-label">Company Email</label>
-              <input type="email" id="company-email" name="email" class="form-input" required autocomplete="email" pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}" aria-describedby="email-error">
+              <label for="company-email">Company Email</label>
+              <input type="email" id="company-email" name="email" required autocomplete="email" pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}" aria-describedby="email-error">
               <span class="form-error-msg" id="email-error" role="alert">Please enter a valid work email address (e.g. name@institution.edu)</span>
             </div>
             <div class="form-group">
-              <label for="company-name" class="form-label">Company Name</label>
-              <input type="text" id="company-name" name="company" class="form-input" placeholder="Institution or organization name" required autocomplete="organization">
+              <label for="company-name">Company Name</label>
+              <input type="text" id="company-name" name="company" placeholder="Institution or organization name" required autocomplete="organization">
             </div>
             <div class="form-group">
-              <label for="message" class="form-label">Your Message</label>
-              <textarea id="message" name="message" class="form-textarea" rows="4" placeholder="Tell us about your current integration, systems, or modernization plans..." required></textarea>
+              <label for="message">Your Message</label>
+              <textarea id="message" name="message" rows="4" placeholder="Tell us about your current integration, systems, or modernization plans..." required></textarea>
             </div>
-            <button type="submit" class="btn form-submit-btn">Book Demo</button>
+            <button type="submit" class="btn btn-submit">Book Demo</button>
           </form>
         </div>
+      </div>
+    </section>
+
+    <!-- Section Q&A -->
+    <section class="qa-section" id="qa">
+      <div class="qa-container">
+        <h2>Questions people usually ask</h2>
+        <div class="qa-list">
+          <details class="qa-item" open>
+            <summary>
+              <span>Is Akaden an AI coding assistant?</span>
+              <span class="qa-icon">−</span>
+            </summary>
+            <div class="qa-answer">
+              <p>No. Coding is one part of the workflow, but Akaden is designed around the broader integration engineering lifecycle: understanding existing systems, design, implementation, testing, deployment, and maintenance.</p>
+            </div>
+          </details>
+
+          <details class="qa-item">
+            <summary>
+              <span>Does Akaden replace integration engineers?</span>
+              <span class="qa-icon">+</span>
+            </summary>
+            <div class="qa-answer">
+              <p>No. Akaden is designed to change where engineers spend their time. Agents take on more of the mechanical work, while engineers remain responsible for goals, architecture, review, decisions, and approval.</p>
+            </div>
+          </details>
+
+          <details class="qa-item">
+            <summary>
+              <span>What kinds of integrations can Akaden work with?</span>
+              <span class="qa-icon">+</span>
+            </summary>
+            <div class="qa-answer">
+              <p>Akaden is focused today on the Ellucian higher-ed ecosystem: Banner, Colleague, Ethos APIs, and Ellucian Data Connect, including both new integration development and modernization of existing integrations.</p>
+            </div>
+          </details>
+
+          <details class="qa-item">
+            <summary>
+              <span>Can Akaden understand an integration we already have?</span>
+              <span class="qa-icon">+</span>
+            </summary>
+            <div class="qa-answer">
+              <p>That is one of its core use cases. Existing code, pipelines, mappings, specifications, and related artifacts can become inputs to the analysis and modernization workflow.</p>
+            </div>
+          </details>
+
+          <details class="qa-item">
+            <summary>
+              <span>Do we have to move everything to Akaden at once?</span>
+              <span class="qa-icon">+</span>
+            </summary>
+            <div class="qa-answer">
+              <p>No. A practical starting point is a single integration or modernization problem. That makes it possible to evaluate the workflow on real engineering work before expanding its use.</p>
+            </div>
+          </details>
+
+          <details class="qa-item">
+            <summary>
+              <span>How is this different from using a general-purpose coding agent?</span>
+              <span class="qa-icon">+</span>
+            </summary>
+            <div class="qa-answer">
+              <p>Akaden combines agents with integration-specific domain knowledge and persistent project context. The goal is not a better prompt. It is a repeatable engineering workflow where the artifacts and knowledge created in one stage carry into the next.</p>
+            </div>
+          </details>
+
+          <details class="qa-item">
+            <summary>
+              <span>What happens in a demo?</span>
+              <span class="qa-icon">+</span>
+            </summary>
+            <div class="qa-answer">
+              <p>Bring us an integration problem — something you need to build, modernize, understand, or maintain. We'll use that context to show how Akaden approaches the engineering workflow.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <img src="assets/akaden-logo-white-figma.svg" alt="AKADEN" class="footer-logo" width="145" height="32">
+      <p class="footer-desc">AI-native integration engineering for higher education.</p>
     </div>
-  </section>
-</main>
+  </footer>
 
-<footer>
-  <div class="wrap">
-    <img src="assets/akaden-logo-white.svg" alt="AKADEN" class="footer-logo" width="50%" height="50%">
-    <p class="footer-desc">AI-native integration engineering for higher education.</p>
-  </div>
-</footer>
-
-<script>
-  const siteNav = document.querySelector('.site-nav');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        siteNav.classList.add('dark'); // Додаємо клас, коли секція в екрані
-      } else {
-        siteNav.classList.remove('dark');
-      }
+  <!-- Interactive Scripts -->
+  <script>
+    // Q&A Accordion interactive icon toggling (+ / -)
+    document.querySelectorAll('.qa-item').forEach(item => {
+      item.addEventListener('toggle', () => {
+        const icon = item.querySelector('.qa-icon');
+        if (icon) {
+          icon.textContent = item.open ? '−' : '+';
+        }
+      });
     });
-  }, { rootMargin: '-80px 0px -99% 0px', 
-  threshold: 0 });
-  const darkSections = document.querySelectorAll(`section.dark`);
-  darkSections.forEach(section => observer.observe(section));
 
-  document.addEventListener('DOMContentLoaded', function () {
-    const form = document.querySelector('.cta-form');
-    const emailInput = document.getElementById('company-email');
-    const emailError = document.getElementById('email-error');
+    // Form Validation
+    document.addEventListener('DOMContentLoaded', function () {
+      const form = document.querySelector('.cta-form');
+      const emailInput = document.getElementById('company-email');
+      const emailError = document.getElementById('email-error');
 
-    if (!form || !emailInput) return;
+      if (!form || !emailInput) return;
 
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-    function validateEmail(showErrorOnEmpty = false) {
-      const val = emailInput.value.trim();
-
-      if (!val) {
-        if (showErrorOnEmpty) {
-          emailInput.classList.remove('is-valid');
-          emailInput.classList.add('is-invalid');
-          if (emailError) emailError.textContent = 'Please enter your company email.';
+      function validateEmail(showError = false) {
+        const val = emailInput.value.trim();
+        if (!val) {
+          if (showError) {
+            emailInput.classList.remove('is-valid');
+            emailInput.classList.add('is-invalid');
+            if (emailError) emailError.textContent = 'Please enter your company email.';
+            return false;
+          }
+          emailInput.classList.remove('is-invalid', 'is-valid');
           return false;
         }
-        emailInput.classList.remove('is-invalid', 'is-valid');
-        return false;
+
+        if (!emailRegex.test(val)) {
+          emailInput.classList.remove('is-valid');
+          emailInput.classList.add('is-invalid');
+          if (emailError) emailError.textContent = 'Please enter a valid work email address (e.g. name@institution.edu).';
+          return false;
+        }
+
+        emailInput.classList.remove('is-invalid');
+        emailInput.classList.add('is-valid');
+        return true;
       }
 
-      if (!emailRegex.test(val)) {
-        emailInput.classList.remove('is-valid');
-        emailInput.classList.add('is-invalid');
-        if (emailError) emailError.textContent = 'Please enter a valid email address (e.g. name@institution.edu).';
-        return false;
-      }
+      emailInput.addEventListener('blur', function () {
+        if (emailInput.value.trim() !== '') {
+          validateEmail(true);
+        }
+      });
 
-      emailInput.classList.remove('is-invalid');
-      emailInput.classList.add('is-valid');
-      return true;
-    }
+      emailInput.addEventListener('input', function () {
+        if (emailInput.classList.contains('is-invalid')) {
+          validateEmail(false);
+        }
+      });
 
-    emailInput.addEventListener('blur', function () {
-      if (emailInput.value.trim() !== '') {
-        validateEmail(true);
-      }
+      form.addEventListener('submit', function (e) {
+        const valid = validateEmail(true);
+        if (!valid) {
+          e.preventDefault();
+          emailInput.focus();
+        } else {
+          e.preventDefault();
+          alert('Thank you! Your request has been received.');
+          form.reset();
+          emailInput.classList.remove('is-valid');
+        }
+      });
     });
-
-    emailInput.addEventListener('input', function () {
-      if (emailInput.classList.contains('is-invalid')) {
-        validateEmail(false);
-      }
-    });
-
-    form.addEventListener('submit', function (e) {
-      const valid = validateEmail(true);
-      if (!valid) {
-        e.preventDefault();
-        emailInput.focus();
-      }
-    });
-  });
-</script>
+  </script>
 </body>
 </html>
