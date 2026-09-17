@@ -268,7 +268,7 @@
       <div class="proof-container">
         <div class="proof-images">
           <img src="assets/proof-code-1.png" alt="Akaden implementation verification screenshot 1" class="proof-img" width="560" height="228" loading="lazy">
-          <img src="assets/proof-code-2.png" alt="Akaden implementation verification screenshot 2" class="proof-img" width="560" height="197" loading="lazy">
+          <img src="assets/proof-code-2.png" alt="Akaden implementation verification screenshot 2" class="proof-img" width="560" height="198" loading="lazy">
         </div>
         <div class="proof-text">
           <h2>Akaden started with real higher-ed modernization work</h2>
@@ -416,7 +416,7 @@
   <script>
     // Hero Section: 
     // 1. Початковий стан: невеликий фіолетовий блок скриває скрін
-    // 2. При скролі блок розгортається на весь екран
+    // 2. Одразу від початку скролу фіолетовий фон росте і розгортається на весь екран
     // 3. Скрін доскролюється до середини екрану (по центру)
     // 4. Вся секція проскролюється зі скріном і фоном
     (function () {
@@ -450,12 +450,13 @@
               return;
             }
 
-            const trackRect = track.getBoundingClientRect();
+            const scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+            const trackDocTop = track.getBoundingClientRect().top + scrollY;
             const pinnedDistance = track.offsetHeight - windowHeight;
+            const totalDistance = Math.max(1, trackDocTop + pinnedDistance);
 
-            // Current scroll progress inside track (0 to 1)
-            const currentScroll = -trackRect.top;
-            const progress = Math.min(Math.max(currentScroll / pinnedDistance, 0), 1);
+            // Progress starts at 0 at the very top (scrollY = 0) and grows immediately from the start of scroll
+            const progress = Math.min(Math.max(scrollY / totalDistance, 0), 1);
 
             const initialWidth = Math.min(1200, windowWidth - 40); // 75rem container
             const initialHeight = 320; // 20rem
@@ -463,9 +464,12 @@
             const initialTop = 32; // 2rem
             const responsiveViewportWidth = 'min(70rem, 88vw, calc((100vh - 5rem) * 1.536))';
 
-            // Phase 1: progress 0.0 -> 0.35: Lavender block expands to full screen (100vw × 100vh)
-            if (progress <= 0.35) {
-              const p1 = progress / 0.35;
+            const phase1End = 0.28;
+            const phase2End = 0.68;
+
+            // Phase 1: progress 0.0 -> phase1End: Lavender block grows immediately and expands to full screen (100vw × 100vh)
+            if (progress <= phase1End) {
+              const p1 = progress / phase1End;
               const curW = initialWidth + p1 * (windowWidth - initialWidth);
               const curH = initialHeight + p1 * (windowHeight - initialHeight);
               const curRad = (1 - p1) * initialRadius;
@@ -481,14 +485,14 @@
               viewport.style.transform = 'translateX(-50%)';
               viewport.style.width = responsiveViewportWidth;
             } 
-            // Phase 2: progress 0.35 -> 0.75: Screenshot moves to exact vertical center of screen
-            else if (progress <= 0.75) {
+            // Phase 2: progress phase1End -> phase2End: Screenshot moves to exact vertical center of screen
+            else if (progress <= phase2End) {
               heroBg.style.width = `${windowWidth}px`;
               heroBg.style.height = `${windowHeight}px`;
               heroBg.style.borderRadius = '0';
               heroBg.style.maxWidth = '100vw';
 
-              const p2 = (progress - 0.35) / 0.40;
+              const p2 = (progress - phase1End) / (phase2End - phase1End);
               const frameHeight = viewport.offsetHeight || 600;
               const targetCenterTop = Math.max(initialTop, (windowHeight - frameHeight) / 2);
               const curTop = initialTop + p2 * (targetCenterTop - initialTop);
@@ -499,7 +503,7 @@
               viewport.style.transform = 'translateX(-50%)';
               viewport.style.width = responsiveViewportWidth;
             } 
-            // Phase 3: progress > 0.75: Screenshot stays centered; whole section scrolls away at the end
+            // Phase 3: progress > phase2End: Screenshot stays centered; whole section scrolls away at the end
             else {
               heroBg.style.width = `${windowWidth}px`;
               heroBg.style.height = `${windowHeight}px`;
