@@ -33,18 +33,24 @@
 
   <main id="main-content">
 
-    <!-- Section Top / Hero: скріншот обрізаний по hero-bg-accent, при скролі розгортати hero-bg-accent на всю ширину -->
+    <!-- Section Top / Hero -->
     <section class="hero-section" id="top">
-      <div class="hero-bg-accent" id="hero-bg-accent">
-        <div class="hero-content-wrap">
-          <h1 class="hero-title">Build and modernize Banner and Colleague integrations with AI agents — not from scratch</h1>
-          <div class="hero-cta-row">
-            <a href="https://calendly.com/akaden-demo/intro" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Book a Demo</a>
-            <a href="#story" class="btn btn-secondary">Read the story ↓</a>
-          </div>
+      <div class="hero-header-wrap">
+        <h1 class="hero-title">Build and modernize Banner and Colleague integrations with AI agents — not from scratch</h1>
+        <div class="hero-cta-row">
+          <a href="https://calendly.com/akaden-demo/intro" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Book a Demo</a>
+          <a href="#story" class="btn btn-secondary">Read the story ↓</a>
         </div>
-        <div class="hero-image-wrap">
-          <img src="assets/akaden-project-home.png" alt="Akaden Project Home Screenshot" class="hero-screenshot" width="960" height="604" loading="eager">
+      </div>
+
+      <!-- Sticky Scroll Track for Screenshot: обрізка, проскрол скріншоту всередині і тоді скрол далі -->
+      <div class="hero-scroll-track" id="hero-scroll-track">
+        <div class="hero-sticky-window">
+          <div class="hero-bg-accent">
+            <div class="hero-screenshot-viewport" id="hero-viewport">
+              <img src="assets/akaden-project-home.png" alt="Akaden Project Home Screenshot" class="hero-screenshot" id="hero-screenshot" width="960" height="604" loading="eager">
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -145,7 +151,7 @@
       </div>
     </section>
 
-    <!-- Section Usecases -->
+    <!-- Section Usecases: без хаверу -->
     <section class="usecases-section" id="usecases">
       <div class="usecases-container">
         <div class="usecases-left">
@@ -190,7 +196,7 @@
       </div>
     </section>
 
-    <!-- Section Why -->
+    <!-- Section Why: без gap у formula-row, без паддінгу у formula-operator -->
     <section class="why-section" id="why">
       <div class="why-container">
         <div class="why-header">
@@ -244,7 +250,7 @@
       </div>
     </section>
 
-    <!-- Section Proof -->
+    <!-- Section Proof: без фону, тільки тінь на proof-img -->
     <section class="proof-section" id="proof">
       <div class="proof-container">
         <div class="proof-images">
@@ -259,7 +265,7 @@
       </div>
     </section>
 
-    <!-- Section CTA Band -->
+    <!-- Section CTA Band: quote-text 24px (1.5rem) -->
     <section class="cta-section" id="cta">
       <div class="cta-container">
         <div class="cta-left">
@@ -305,7 +311,7 @@
       </div>
     </section>
 
-    <!-- Section Q&A -->
+    <!-- Section Q&A: без гепу у qa-list, без бордерів у qa-item -->
     <section class="qa-section" id="qa">
       <div class="qa-container">
         <h2>Questions people usually ask</h2>
@@ -395,24 +401,42 @@
 
   <!-- Interactive Scripts -->
   <script>
-    // Hero Section: expand hero-bg-accent to full width on scroll
-    const heroBgAccent = document.getElementById('hero-bg-accent');
-    if (heroBgAccent) {
+    // Hero Section: sticky scrubbing of the screenshot inside the clipped viewport
+    (function () {
+      const track = document.getElementById('hero-scroll-track');
+      const viewport = document.getElementById('hero-viewport');
+      const screenshot = document.getElementById('hero-screenshot');
+
+      if (!track || !viewport || !screenshot) return;
+
       let isTicking = false;
-      window.addEventListener('scroll', function () {
+
+      function onScroll() {
         if (!isTicking) {
-          window.requestAnimationFrame(function () {
-            if (window.scrollY > 40) {
-              heroBgAccent.classList.add('expanded');
-            } else {
-              heroBgAccent.classList.remove('expanded');
+          window.requestAnimationFrame(() => {
+            const trackRect = track.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+            const scrollDistance = track.offsetHeight - windowHeight;
+
+            if (scrollDistance > 0) {
+              const currentScroll = -trackRect.top;
+              const progress = Math.min(Math.max(currentScroll / scrollDistance, 0), 1);
+              const maxTranslate = Math.max(0, screenshot.offsetHeight - viewport.offsetHeight);
+              const translateY = -progress * maxTranslate;
+              screenshot.style.transform = `translateY(${translateY}px)`;
             }
+
             isTicking = false;
           });
           isTicking = true;
         }
-      }, { passive: true });
-    }
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll, { passive: true });
+      screenshot.addEventListener('load', onScroll);
+      onScroll();
+    })();
 
     // Q&A Accordion interactive icon toggling (+ / -)
     document.querySelectorAll('.qa-item').forEach(item => {

@@ -44,7 +44,6 @@
   /* Shadows (using rem for relative scalability) */
   --shadow-btn-primary: 0 0.75rem 1.75rem rgba(29, 49, 149, 0.14);
   --shadow-btn-sm: 0 0.25rem 1rem -0.25rem rgba(29, 49, 149, 0.24);
-  --shadow-hero-img: 0 0.625rem 2.5rem -0.625rem rgba(41, 51, 102, 0.20);
   --shadow-proof-img: 0 0.25rem 0.75rem -0.25rem rgba(0, 0, 0, 0.15);
   --shadow-form: 0 1.5rem 3.5rem rgba(15, 23, 42, 0.22);
   --shadow-qa-open: 0 0.3125rem 1.25rem -0.625rem rgba(0, 0, 0, 0.15);
@@ -210,39 +209,22 @@ button, input, textarea {
 
 /* --------------------------------------------------------------------------
    4. Section Top / Hero
-   - скріншот обрізаний по hero-bg-accent
-   - при скролі розгортати hero-bg-accent на всю ширину
+   - індіго фон починається під кнопками CTA
+   - обрізати скріншот
+   - при скролі стікі всередині проскролюється скріншот і тоді скролиться далі
+   - без паддінгу і тіні на скріншоті
    -------------------------------------------------------------------------- */
 .hero-section {
   background-color: var(--color-section-alt);
-  padding: 2.5rem 0 0 0;
+  padding: 3.75rem 0 0 0;
   position: relative;
 }
 
-.hero-bg-accent {
-  width: 100%;
-  max-width: var(--container-max-width);
-  margin: 0 auto;
-  border-radius: 0.625rem; /* 10px */
-  background: linear-gradient(180deg, rgba(178, 191, 255, 0.3) 0%, rgba(178, 191, 255, 0.3) 100%);
-  overflow: hidden; /* Clips the screenshot */
-  position: relative;
-  transition: max-width 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-radius 0.4s ease, padding 0.4s ease;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.hero-bg-accent.expanded {
-  max-width: 100%;
-  border-radius: 0;
-}
-
-.hero-content-wrap {
-  padding: 3.75rem 1.25rem 2.5rem;
-  text-align: center;
+.hero-header-wrap {
   max-width: 50rem; /* 800px */
-  margin: 0 auto;
+  margin: 0 auto 3rem;
+  padding: 0 1.25rem;
+  text-align: center;
 }
 
 .hero-title {
@@ -261,22 +243,58 @@ button, input, textarea {
   gap: 1.25rem;
 }
 
-.hero-image-wrap {
+/* Sticky Scroll Track */
+.hero-scroll-track {
+  height: 180vh; /* Provides the scroll distance to scrub through the screenshot */
+  position: relative;
+  margin-top: 1.5rem;
+}
+
+.hero-sticky-window {
+  position: sticky;
+  top: 5.5rem; /* Sits cleanly below the sticky navigation */
   width: 100%;
-  max-width: 60rem; /* 960px */
-  margin: 2.5rem auto 0;
-  padding: 0 1.25rem;
   display: flex;
   justify-content: center;
+  padding: 0 1.25rem;
+  z-index: 10;
+}
+
+/* Indigo background container starting below CTA buttons */
+.hero-bg-accent {
+  width: 100%;
+  max-width: var(--container-max-width);
+  background: linear-gradient(180deg, rgba(178, 191, 255, 0.45) 0%, rgba(178, 191, 255, 0.25) 100%);
+  border-radius: 1.25rem 1.25rem 0 0;
+  padding: 2.5rem 2.5rem 0 2.5rem;
+  overflow: hidden; /* Clips the screenshot */
+  height: 34rem;    /* Fixed viewport window height */
+  display: flex;
+  justify-content: center;
+}
+
+.hero-screenshot-viewport {
+  width: 100%;
+  max-width: 60rem; /* 960px */
+  height: 100%;
+  overflow: hidden; /* Viewport clipping */
+  border-radius: 0.5rem 0.5rem 0 0;
+  border: 0.0625rem solid var(--color-border-subtle);
+  border-bottom: none;
+  background: #FFFFFF;
+  position: relative;
 }
 
 .hero-screenshot {
   width: 100%;
   height: auto;
-  border: 0.0625rem solid var(--color-border-subtle);
-  border-radius: 0.3125rem 0.3125rem 0 0;
-  box-shadow: var(--shadow-hero-img);
   display: block;
+  padding: 0;       /* No padding per user request */
+  box-shadow: none; /* No shadow per user request */
+  border: none;
+  transform: translateY(0);
+  will-change: transform;
+  transition: transform 0.05s linear;
 }
 
 /* --------------------------------------------------------------------------
@@ -287,6 +305,8 @@ button, input, textarea {
 .story-section {
   background: linear-gradient(180deg, var(--color-section-alt) 0%, #FFFFFF 100%);
   padding: 5rem 1.25rem 3.75rem;
+  position: relative;
+  z-index: 20;
 }
 
 .story-header {
@@ -750,7 +770,6 @@ button, input, textarea {
 
 .knowledge-container {
   max-width: var(--container-narrow-width);
-  /* Aligned to the left container margin instead of margin: 0 auto */
   margin-left: max(1.25rem, calc((100% - var(--container-max-width)) / 2));
   margin-right: auto;
   text-align: left;
@@ -1043,12 +1062,12 @@ button, input, textarea {
 .qa-item[open] {
   background: #FFFFFF;
   box-shadow: var(--shadow-qa-open);
-  border: none; /* Border removed */
+  border: none;
 }
 
 .qa-item:not([open]) {
   background: transparent;
-  border: none; /* Border removed */
+  border: none;
 }
 
 .qa-item summary {
@@ -1180,6 +1199,11 @@ button, input, textarea {
   .knowledge-title {
     font-size: 3rem;
   }
+  
+  .hero-bg-accent {
+    padding: 1.5rem 1.5rem 0 1.5rem;
+    height: 26rem;
+  }
 }
 
 @media (max-width: 48rem) { /* 768px */
@@ -1224,5 +1248,11 @@ button, input, textarea {
 
   .knowledge-text {
     font-size: 1.25rem;
+  }
+  
+  .hero-bg-accent {
+    padding: 1rem 1rem 0 1rem;
+    height: 20rem;
+    border-radius: 0.75rem 0.75rem 0 0;
   }
 }
