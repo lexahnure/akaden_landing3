@@ -743,9 +743,10 @@ button, input, textarea {
 
 .formula-row {
   display: grid;
-  grid-template-columns: 16.9375rem auto 16.9375rem auto 16.9375rem auto 16.6875rem;
+  grid-template: 1fr auto 1fr auto 1fr auto 1fr;
+  grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
   align-items: center;
-  gap: 0; /* Gap removed per user request */
+  gap: 0;
   margin-top: 2rem;
 }
 
@@ -797,6 +798,7 @@ button, input, textarea {
   color: var(--color-accent-indigo);
   text-align: center;
   padding: 0; /* Padding removed per user request */
+  width: fit-content;
 }
 
 .formula-result-card {
@@ -1106,7 +1108,7 @@ button, input, textarea {
 .qa-list {
   display: flex;
   flex-direction: column;
-  gap: 0; /* Gap removed per user request */
+  gap: 0.5rem;
 }
 
 .qa-item {
